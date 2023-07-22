@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tea/screens/home.dart';
 import 'package:tea/utils/colors.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
@@ -12,46 +13,64 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> with TickerProviderStateMixin {
-  static const duration = Duration(seconds: 4);
-  late AnimationController animationController;
-  late Animation<double> animation;
-  late Tween<double> tween;
+  static const Duration duration = Duration(seconds: 4);
+  late double overflowSize;
+  late AnimationController iconAnimationController;
+  late Animation<double> iconBackgroundAnimation;
+  late Animation<double> iconAnimation;
+  late Tween<double> iconBackgroundTween;
+  late Tween<double> iconTween;
 
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(
+    iconAnimationController = AnimationController(
       vsync: this,
       duration: duration,
     );
-    animation = CurvedAnimation(
-      parent: animationController,
-      curve: const Interval(0.5, 0.7, curve: Curves.easeInBack),
+    iconBackgroundAnimation = CurvedAnimation(
+      parent: iconAnimationController,
+      curve: const Interval(0.85, 1.0, curve: Curves.easeInBack),
     );
-    animationController.repeat(reverse: true);
-    tween = Tween(begin: 0.1, end: 1.0);
+    iconAnimation = CurvedAnimation(
+      parent: iconAnimationController,
+      curve: const Interval(0.85, 0.95, curve: Curves.linear),
+    );
+    iconAnimationController.forward();
+    iconBackgroundTween = Tween(begin: 0.15, end: 1.0);
+    iconTween = Tween(begin: 1.0, end: 0.0);
   }
 
   @override
   Widget build(BuildContext context) {
+    overflowSize = MediaQuery.of(context).size.longestSide * 1.5;
     return AnimatedSplashScreen(
-      splash: SizedOverflowBox(
-        size: MediaQuery.of(context).size,
+      splash: OverflowBox(
+        maxWidth: overflowSize,
+        maxHeight: overflowSize,
         child: Center(
           child: ScaleTransition(
-            scale: tween.animate(animation),
+            scale: iconBackgroundTween.animate(iconBackgroundAnimation),
             child: Container(
-              width: MediaQuery.of(context).size.longestSide,
-              height: MediaQuery.of(context).size.longestSide,
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.5),
+              width: overflowSize,
+              height: overflowSize,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: primary,
+              ),
+              child: FadeTransition(
+                opacity: iconTween.animate(iconAnimation),
+                child: SvgPicture.asset(
+                  'assets/icons/logo.svg',
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
           ),
         ),
       ),
-      nextScreen: Home(),
+      nextScreen: const Home(),
       backgroundColor: primaryLight,
       splashIconSize: MediaQuery.of(context).size.height,
       pageTransitionType: PageTransitionType.topToBottom,
