@@ -11,6 +11,15 @@ import 'package:tea/utils/colors.dart';
 import 'package:tea/utils/constants.dart';
 import 'package:tea/utils/fonts.dart';
 
+MaterialStateProperty<Color> buttonForegroundColor(
+    Color normal, Color pressed) {
+  getForegroundColor(Set<MaterialState> states) {
+    return states.contains(MaterialState.pressed) ? pressed : normal;
+  }
+
+  return MaterialStateProperty.resolveWith(getForegroundColor);
+}
+
 ButtonStyle primaryButtonTheme = ButtonStyle(
   padding: const MaterialStatePropertyAll(buttonPadding),
   shape: MaterialStatePropertyAll(
@@ -19,16 +28,23 @@ ButtonStyle primaryButtonTheme = ButtonStyle(
     ),
   ),
   backgroundColor: const MaterialStatePropertyAll(secondary),
+  foregroundColor: buttonForegroundColor(Colors.white, Colors.black),
   overlayColor: const MaterialStatePropertyAll(secondaryLight),
 );
 
-ButtonStyle secondaryButtonTheme = const ButtonStyle(
-  backgroundColor: MaterialStatePropertyAll(primaryLight),
-  overlayColor: MaterialStatePropertyAll(primary),
+ButtonStyle secondaryButtonTheme = ButtonStyle(
+  padding: const MaterialStatePropertyAll(buttonPadding),
+  shape: MaterialStatePropertyAll(
+    RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(28),
+    ),
+  ),
+  backgroundColor: const MaterialStatePropertyAll(primaryLight),
+  foregroundColor: buttonForegroundColor(Colors.black, Colors.white),
+  overlayColor: const MaterialStatePropertyAll(primaryDark),
 );
 
 ThemeData mainTheme = ThemeData(
   scaffoldBackgroundColor: primary,
   textTheme: appTextTheme,
-  elevatedButtonTheme: ElevatedButtonThemeData(style: primaryButtonTheme),
 );

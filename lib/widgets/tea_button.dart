@@ -7,14 +7,14 @@ enum TEAButtonTheme {
 }
 
 class TEAButton extends StatelessWidget {
-  final Function onTap;
+  final Function action;
   final String label;
-  final TEAButtonTheme? theme;
   final IconData? icon;
+  final TEAButtonTheme? theme;
 
   const TEAButton({
     super.key,
-    required this.onTap,
+    required this.action,
     required this.label,
     this.icon,
     this.theme,
@@ -22,15 +22,17 @@ class TEAButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> buttonContent = icon != null
-        ? <Widget>[
-            Text(label),
-            Icon(icon, color: Colors.black),
-          ]
-        : <Widget>[Text(label)];
+    final Text buttonLabel = Text(label);
+    final Icon buttonIcon = Icon(icon);
+    List<Widget> buttonContent = icon != null
+        ? <Widget>[buttonLabel, buttonIcon]
+        : <Widget>[buttonLabel];
+    final ButtonStyle buttonStyle = theme == TEAButtonTheme.secondary
+        ? secondaryButtonTheme
+        : primaryButtonTheme;
     return ElevatedButton(
-      style: secondaryButtonTheme,
-      onPressed: onTap(),
+      style: buttonStyle,
+      onPressed: () => action(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: buttonContent,

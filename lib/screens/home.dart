@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tea/utils/constants.dart';
+import 'package:tea/widgets/tea_button.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -30,9 +31,16 @@ class Home extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Siguiente'),
+                  TEAButton(
+                    action: () {},
+                    label: 'TEA',
+                  ),
+                  const SizedBox(height: 12),
+                  TEAButton(
+                    action: () {},
+                    label: 'Comenzar',
+                    icon: Icons.arrow_forward,
+                    theme: TEAButtonTheme.secondary,
                   ),
                 ],
               )
