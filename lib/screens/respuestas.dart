@@ -74,7 +74,7 @@ class Respuestas extends StatelessWidget {
     );
   }
 
-  // Método para recuperar las respuestas guardadas
+  // Método para obtener las respuestas guardadas
   Future<Map<int, String?>> _getResponses() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Map<int, String?> respuestas = {};
