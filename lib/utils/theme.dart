@@ -47,4 +47,9 @@ ButtonStyle secondaryButtonTheme = ButtonStyle(
 ThemeData mainTheme = ThemeData(
   scaffoldBackgroundColor: primary,
   textTheme: appTextTheme,
+  appBarTheme: AppBarTheme(
+    backgroundColor: primary.withAlpha(200),
+    elevation: 0,
+    titleTextStyle: h2,
+  ),
 );

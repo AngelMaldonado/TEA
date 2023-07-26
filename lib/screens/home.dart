@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tea/screens/info.dart';
 import 'package:tea/utils/constants.dart';
 import 'package:tea/widgets/tea_button.dart';
 
@@ -32,7 +33,12 @@ class Home extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   TEAButton(
-                    action: () {},
+                    action: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Info(),
+                      ),
+                    ),
                     label: 'TEA',
                   ),
                   const SizedBox(height: 12),
