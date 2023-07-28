@@ -52,4 +52,16 @@ ThemeData mainTheme = ThemeData(
     elevation: 0,
     titleTextStyle: h2,
   ),
+  dialogTheme: DialogTheme(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    backgroundColor: primaryLight,
+    titleTextStyle: paragraph.copyWith(
+      color: Colors.red,
+      shadows: [],
+    ),
+    contentTextStyle: paragraph.copyWith(
+      color: Colors.black,
+      shadows: [],
+    ),
+  ),
 );
