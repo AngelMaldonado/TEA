@@ -14,6 +14,9 @@ dependencies:
   shared_preferences: ^2.2.0
   cupertino_icons: ^1.0.2
   provider: ^6.0.5
+  animated_splash_screen: ^1.3.0
+  page_transition: ^2.0.9
+  flutter_svg: ^2.0.7
 
 dev_dependencies:
   flutter_test:
@@ -27,8 +30,15 @@ flutter:
 
   assets:
      - assets/images/
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/icons/
+  #   - images/a_dot_ham.jpeg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
 
   fonts:
-    - family: Odin     
+    - family: Odin
       fonts:
         - asset: assets/fonts/Odin.otf
