@@ -1,5 +1,8 @@
 // Pantalla de inicio
-export 'package:tea/screens/home_page.dart';
+export 'package:tea/screens/home.dart';
+
+// Pantalla de información
+export 'package:tea/screens/info.dart';
 
 // Pantallas de preguntas
 export 'package:tea/screens/pantallas_preguntas/pregunta_1.dart';

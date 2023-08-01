@@ -41,7 +41,7 @@ class TEAAlertDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         TEAButton(
-          action: () {},
+          action: () => action(),
           label: buttonLabel,
           icon: buttonIcon,
         ),

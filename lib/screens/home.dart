@@ -57,7 +57,12 @@ class Home extends StatelessWidget {
                           return TEAAlertDialog(
                             title: 'Advertencia',
                             content: alertText,
-                            action: () {},
+                            action: () {
+                              Navigator.pushReplacementNamed(
+                                context,
+                                'pregunta_1',
+                              );
+                            },
                             buttonLabel: 'Continuar',
                             buttonIcon: Icons.arrow_forward,
                           );
