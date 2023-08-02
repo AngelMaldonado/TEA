@@ -5,6 +5,7 @@ export 'package:tea/screens/home.dart';
 export 'package:tea/screens/info.dart';
 
 // Pantallas de preguntas
+export 'package:tea/screens/initial_data.dart';
 export 'package:tea/screens/pantallas_preguntas/pregunta_1.dart';
 export 'package:tea/screens/pantallas_preguntas/pregunta_2.dart';
 export 'package:tea/screens/pantallas_preguntas/pregunta_3.dart';

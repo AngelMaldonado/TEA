@@ -64,4 +64,12 @@ ThemeData mainTheme = ThemeData(
       shadows: [],
     ),
   ),
+  sliderTheme: const SliderThemeData(
+    activeTrackColor: primaryLight,
+    inactiveTickMarkColor: primaryLight,
+    inactiveTrackColor: primaryLight,
+    thumbColor: primaryLight,
+    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 23),
+    trackHeight: 8.0,
+  ),
 );
