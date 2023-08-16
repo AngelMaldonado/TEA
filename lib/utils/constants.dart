@@ -10,4 +10,8 @@ import 'package:flutter/material.dart';
 
 const double appMargin = 24;
 const double mainSpacing = 12;
-const EdgeInsets buttonPadding = EdgeInsets.all(14);
+const EdgeInsets buttonPadding = EdgeInsets.all(12);
+const EdgeInsets textButtonPadding = EdgeInsets.symmetric(
+  horizontal: 12,
+  vertical: 8,
+);

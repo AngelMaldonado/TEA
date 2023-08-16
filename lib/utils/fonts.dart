@@ -29,6 +29,11 @@ const TextStyle inputText = TextStyle(
   color: primaryLight,
   shadows: <Shadow>[mainShadow],
 );
+const TextStyle inputTextDark = TextStyle(
+  fontSize: 24,
+  fontWeight: FontWeight.normal,
+  color: Colors.black,
+);
 const TextStyle buttonText = TextStyle(
   fontSize: 24,
   fontWeight: FontWeight.normal,

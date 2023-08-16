@@ -9,8 +9,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tea/provider.dart';
-import 'package:tea/screens/home.dart';
-import 'package:tea/screens/info.dart';
 import 'package:tea/screens/splash.dart';
 import 'package:tea/utils/theme.dart';
 import 'package:tea/routes.dart';
@@ -34,6 +32,7 @@ class App extends StatelessWidget {
           'splash': (context) => const Splash(),
           'home': (context) => const Home(),
           'info': (context) => const Info(),
+          'initial_data': (context) => const InitialData(),
           'pregunta_1': (context) => const Pregunta1(),
           'pregunta_2': (context) => const Pregunta2(),
           'pregunta_3': (context) => const Pregunta3(),

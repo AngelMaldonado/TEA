@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tea/utils/theme.dart';
 
-enum TEAButtonTheme {
-  primary,
-  secondary,
-}
-
 class TEAButton extends StatelessWidget {
   final Function action;
   final String label;
   final IconData? icon;
-  final TEAButtonTheme? theme;
+  final TEAComponentTheme? theme;
 
   const TEAButton({
     super.key,
@@ -27,7 +22,7 @@ class TEAButton extends StatelessWidget {
     List<Widget> buttonContent = icon != null
         ? <Widget>[buttonLabel, buttonIcon]
         : <Widget>[buttonLabel];
-    final ButtonStyle buttonStyle = theme == TEAButtonTheme.secondary
+    final ButtonStyle buttonStyle = theme == TEAComponentTheme.secondary
         ? secondaryButtonTheme
         : primaryButtonTheme;
     return ElevatedButton(
