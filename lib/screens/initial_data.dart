@@ -183,7 +183,7 @@ class _InitialDataState extends State<InitialData> {
             ),
             const SizedBox(height: mainSpacing * 2),
             TEAButton(
-              action: () => Navigator.pushNamed(context, 'home'),
+              action: () => Navigator.pushNamed(context, 'pregunta_1'),
               label: 'Siguiente',
               icon: Icons.arrow_forward,
               theme: TEAComponentTheme.secondary,
