@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:tea/widgets/tea_button.dart';
 import '../utils/constants.dart';
+import '../utils/theme.dart';
 
 class TEAAppBar extends StatelessWidget {
   final String title;
+  final bool? centerTitle;
   final Function action;
 
   const TEAAppBar({
     super.key,
     required this.title,
     required this.action,
+    this.centerTitle = true,
   });
 
   @override
@@ -17,15 +20,20 @@ class TEAAppBar extends StatelessWidget {
     return AppBar(
       toolbarHeight: MediaQuery.of(context).size.height * 0.1,
       leadingWidth: MediaQuery.of(context).size.height * 0.1,
-      title: const Text('TEA'),
-      centerTitle: true,
+      title: centerTitle == false
+          ? Align(
+              alignment: Alignment.centerRight,
+              child: Text(title),
+            )
+          : Text(title),
+      centerTitle: centerTitle,
       leading: Padding(
         padding: const EdgeInsets.all(appMargin / 2),
         child: TEAButton(
           action: () => action(),
           label: '',
           icon: Icons.arrow_back_ios_new,
-          theme: TEAButtonTheme.secondary,
+          theme: TEAComponentTheme.secondary,
         ),
       ),
     );

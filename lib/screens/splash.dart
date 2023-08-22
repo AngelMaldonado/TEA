@@ -1,3 +1,11 @@
+/// Archivo: app.dart
+/// Autores: Angel de Jesús Maldonado Juárez & Carlos Andrés de la Rosa Rincon
+/// Fecha: 20 de julio del 2023
+/// Descripción: Pantalla de bienvenida (splash) con animación
+///
+/// Universidad Autónoma de San Luis Potosí
+/// Facultad de Ingeniería
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tea/screens/home.dart';

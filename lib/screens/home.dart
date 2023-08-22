@@ -5,6 +5,8 @@ import 'package:tea/utils/constants.dart';
 import 'package:tea/widgets/tea_alert_dialog.dart';
 import 'package:tea/widgets/tea_button.dart';
 
+import '../utils/theme.dart';
+
 class Home extends StatelessWidget {
   const Home({super.key});
 
@@ -27,7 +29,7 @@ class Home extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               Text(
-                'A continuación se le realizarán seis preguntas para un '
+                'A continuación, se le realizarán seis preguntas para un '
                 'acercamiento del espectro autista en su hijo.\nAntes de '
                 'iniciar la encuesta, le sugerimos indagar más acerca del '
                 'espectro autista pulsando el botón "TEA".',
@@ -49,7 +51,7 @@ class Home extends StatelessWidget {
                   TEAButton(
                     label: 'Comenzar',
                     icon: Icons.arrow_forward,
-                    theme: TEAButtonTheme.secondary,
+                    theme: TEAComponentTheme.secondary,
                     action: () {
                       showDialog(
                         context: context,
@@ -57,7 +59,13 @@ class Home extends StatelessWidget {
                           return TEAAlertDialog(
                             title: 'Advertencia',
                             content: alertText,
-                            action: () {},
+                            action: () {
+                              Navigator.pop(context);
+                              Navigator.pushNamed(
+                                context,
+                                'questions',
+                              );
+                            },
                             buttonLabel: 'Continuar',
                             buttonIcon: Icons.arrow_forward,
                           );
