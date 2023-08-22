@@ -16,77 +16,53 @@ import 'package:tea/widgets/tea_button.dart';
 import 'package:tea/widgets/tea_checkbox_group.dart';
 import 'package:tea/widgets/tea_combobox.dart';
 import 'package:tea/widgets/tea_range_selector.dart';
+
 import '../utils/constants.dart';
 import '../widgets/appbar.dart';
 
 class InitialData extends StatefulWidget {
-  const InitialData({super.key});
+  final InitialInfo initialInfo;
+  final Function onNextAction;
+  final Function onBackAction;
+
+  const InitialData({
+    super.key,
+    required this.initialInfo,
+    required this.onNextAction,
+    required this.onBackAction,
+  });
 
   @override
   State<InitialData> createState() => _InitialDataState();
 }
 
-class _InitialDataState extends State<InitialData> {
-  final InitialInfo _initialInfo = InitialInfo(18, '', '', 0);
+class _InitialDataState extends State<InitialData>
+    with AutomaticKeepAliveClientMixin {
   final Map<String, bool> _sex = {'👦Masculino': false, '👧Femenino': false};
-  final List<String> _municipalities = <String>[
-    "Ahualulco",
-    "Alaquines",
-    "Aquismón",
-    "Armadillo de los Infante",
-    "Cárdenas",
-    "Catorce",
-    "Cedral",
-    "Cerritos",
-    "Cerro de San Pedro",
-    "Charcas",
-    "Ciudad del Maíz",
-    "Ciudad Fernández",
-    "Ciudad Valles",
-    "Coxcatlán",
-    "Ebano",
-    "El Naranjo",
-    "Guadalcázar",
-    "Huehuetlán",
-    "Lagunillas",
-    "Matehuala",
-    "Matlapa",
-    "Mexquitic de Carmona",
-    "Moctezuma",
-    "Rayón",
-    "Rioverde",
-    "Salinas",
-    "San Antonio",
-    "San Ciro de Acosta",
-    "San Luis Potosí",
-    "San Martín Chalchicuautla",
-    "San Nicolás Tolentino",
-    "San Vicente Tancuayalab",
-    "Santa Catarina",
-    "Santa María del Río",
-    "Santo Domingo",
-    "Soledad de Graciano Sánchez",
-    "Tamasopo",
-    "Tamazunchale",
-    "Tampacán",
-    "Tampamolón Corona",
-    "Tamuín",
-    "Tancanhuitz",
-    "Tanlajás",
-    "Tanquián de Escobedo",
-    "Tierra Nueva",
-    "Vanegas",
-    "Venado",
-    "Villa de Arriaga",
-    "Villa de Guadalupe",
-    "Villa de la Paz",
-    "Villa de Ramos",
-    "Villa de Reyes",
-    "Villa Hidalgo",
-    "Villa Juárez",
-    "Xilitla",
-    "Zaragoza",
-  ];
+
+  void _validateForm() {
+    if (widget.initialInfo.sex.isEmpty ||
+        widget.initialInfo.municipality.isEmpty ||
+        widget.initialInfo.cp.toString().length < 5) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          Future.delayed(
+            const Duration(seconds: 2),
+            () => Navigator.pop(context),
+          );
+          return const AlertDialog(
+            content: Text(
+              'Porfavor llene todos los campos antes de continuar',
+              textAlign: TextAlign.center,
+            ),
+          );
+        },
+      );
+    } else {
+      widget.onNextAction();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +75,7 @@ class _InitialDataState extends State<InitialData> {
         ),
         child: TEAAppBar(
           title: 'Datos Iniciales',
-          action: () => Navigator.pop(context),
+          action: widget.onBackAction,
         ),
       ),
       body: SafeArea(
@@ -112,16 +88,16 @@ class _InitialDataState extends State<InitialData> {
             ),
             const SizedBox(height: mainSpacing),
             Text(
-              '${_initialInfo.age} Meses',
+              '${widget.initialInfo.age} Meses',
               style: Theme.of(context).textTheme.headlineSmall,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: mainSpacing),
             TEARangeSelector(
               valueChanged: (newAge) => setState(
-                () => _initialInfo.age = newAge.toInt(),
+                () => widget.initialInfo.age = newAge.toInt(),
               ),
-              value: _initialInfo.age.toDouble(),
+              value: widget.initialInfo.age.toDouble(),
               min: 18,
               max: 24,
               minLabel: Text(
@@ -141,7 +117,7 @@ class _InitialDataState extends State<InitialData> {
             TEACheckBoxGroup(
               options: _sex,
               onSelectedValueChanged: (String selectedSex) =>
-                  _initialInfo.sex = selectedSex.substring(2),
+                  widget.initialInfo.sex = selectedSex.substring(2),
             ),
             const SizedBox(height: mainSpacing),
             Text(
@@ -151,9 +127,9 @@ class _InitialDataState extends State<InitialData> {
             const SizedBox(height: mainSpacing),
             TEAComboBox(
               placeHolder: 'Elige un municipio',
-              options: _municipalities,
+              options: InitialInfo.municipalities,
               onSelect: (String selection) {
-                _initialInfo.municipality = selection;
+                widget.initialInfo.municipality = selection;
               },
             ),
             const SizedBox(height: mainSpacing),
@@ -179,11 +155,13 @@ class _InitialDataState extends State<InitialData> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              onChanged: (String value) => _initialInfo.cp = int.parse(value),
+              onChanged: (String value) {
+                widget.initialInfo.cp = int.parse(value);
+              },
             ),
             const SizedBox(height: mainSpacing * 2),
             TEAButton(
-              action: () => Navigator.pushNamed(context, 'pregunta_1'),
+              action: _validateForm,
               label: 'Siguiente',
               icon: Icons.arrow_forward,
               theme: TEAComponentTheme.secondary,
@@ -193,4 +171,7 @@ class _InitialDataState extends State<InitialData> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

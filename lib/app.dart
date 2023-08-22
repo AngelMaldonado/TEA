@@ -8,48 +8,33 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tea/models/answer.dart';
+import 'package:tea/models/tea_record.dart';
 import 'package:tea/provider.dart';
 import 'package:tea/screens/splash.dart';
 import 'package:tea/utils/theme.dart';
 import 'package:tea/routes.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
 
   @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<ResultadoProvider>(
-          create: (_) => ResultadoProvider(),
-        ),
-      ],
-      builder: (context, _) => MaterialApp(
-        title: 'TEA',
-        theme: mainTheme,
-        initialRoute: 'splash',
-        routes: {
-          'splash': (context) => const Splash(),
-          'home': (context) => const Home(),
-          'info': (context) => const Info(),
-          'initial_data': (context) => const InitialData(),
-          'pregunta_1': (context) => const Pregunta1(),
-          'pregunta_2': (context) => const Pregunta2(),
-          'pregunta_3': (context) => const Pregunta3(),
-          'pregunta_4': (context) => const Pregunta4(),
-          'pregunta_5': (context) => const Pregunta5(),
-          'pregunta_6': (context) => const Pregunta6(),
-          'resultadoNegativo': (context) => const ResultadoNegativo(),
-          'resultadoPositivo': (context) => const ResultadoPositivo(),
-          'respuestas': (context) => const Respuestas(),
-          'info_pregunta_1': (context) => const InfoPregunta1(),
-          'info_pregunta_2': (context) => const InfoPregunta2(),
-          'info_pregunta_3': (context) => const InfoPregunta3(),
-          'info_pregunta_4': (context) => const InfoPregunta4(),
-          'info_pregunta_5': (context) => const InfoPregunta5(),
-          'info_pregunta_6': (context) => const InfoPregunta6(),
-        },
-      ),
+    return MaterialApp(
+      title: 'TEA',
+      theme: mainTheme,
+      initialRoute: 'splash',
+      routes: {
+        'splash': (context) => const Splash(),
+        'home': (context) => const Home(),
+        'info': (context) => const Info(),
+        'questions': (context) => const Questions(),
+      },
     );
   }
 }

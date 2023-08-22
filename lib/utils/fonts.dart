@@ -49,21 +49,18 @@ const TextStyle paragraphLarge = TextStyle(
   fontWeight: FontWeight.bold,
   height: 1,
   color: primaryLight,
-  shadows: <Shadow>[mainShadow],
 );
 const TextStyle paragraph = TextStyle(
   fontSize: 20,
   fontWeight: FontWeight.normal,
   height: 1,
   color: primaryLight,
-  shadows: <Shadow>[mainShadow],
 );
 const TextStyle paragraphSmall = TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.normal,
   height: 1,
   color: primaryLight,
-  shadows: <Shadow>[mainShadow],
 );
 const TextTheme appTextTheme = TextTheme(
   headlineMedium: h2,

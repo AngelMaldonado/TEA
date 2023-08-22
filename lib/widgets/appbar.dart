@@ -5,12 +5,14 @@ import '../utils/theme.dart';
 
 class TEAAppBar extends StatelessWidget {
   final String title;
+  final bool? centerTitle;
   final Function action;
 
   const TEAAppBar({
     super.key,
     required this.title,
     required this.action,
+    this.centerTitle = true,
   });
 
   @override
@@ -18,8 +20,13 @@ class TEAAppBar extends StatelessWidget {
     return AppBar(
       toolbarHeight: MediaQuery.of(context).size.height * 0.1,
       leadingWidth: MediaQuery.of(context).size.height * 0.1,
-      title: Text(title),
-      centerTitle: true,
+      title: centerTitle == false
+          ? Align(
+              alignment: Alignment.centerRight,
+              child: Text(title),
+            )
+          : Text(title),
+      centerTitle: centerTitle,
       leading: Padding(
         padding: const EdgeInsets.all(appMargin / 2),
         child: TEAButton(

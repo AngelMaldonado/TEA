@@ -63,7 +63,7 @@ class Home extends StatelessWidget {
                               Navigator.pop(context);
                               Navigator.pushNamed(
                                 context,
-                                'initial_data',
+                                'questions',
                               );
                             },
                             buttonLabel: 'Continuar',
