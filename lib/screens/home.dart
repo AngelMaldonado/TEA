@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tea/screens/info.dart';
 import 'package:tea/utils/constants.dart';
+import 'package:tea/widgets/tea_text.dart';
 import 'package:tea/widgets/tea_alert_dialog.dart';
 import 'package:tea/widgets/tea_button.dart';
 
-import '../utils/theme.dart';
+import '../utils/tea_theme.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -18,32 +20,45 @@ class Home extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(appMargin),
+          padding: appPadding,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              SvgPicture.asset('assets/icons/logo_family.svg'),
-              Text(
-                'Bienvenido a TEA',
-                style: Theme.of(context).textTheme.headlineMedium,
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    SvgPicture.asset(
+                      'assets/icons/logo_family.svg',
+                      width: MediaQuery.of(context).size.width * 0.6,
+                    ),
+                    SizedBox(height: 16.h),
+                    const TEAText(
+                      'Bienvenido a TEA',
+                      alignment: TextAlign.center,
+                      textStyle: TEATextStyle.h2,
+                    ),
+                    SizedBox(height: 16.h),
+                    const TEAText(
+                      'A continuación, se le realizarán seis preguntas para un '
+                      'acercamiento del espectro autista en su hijo.\nAntes de '
+                      'iniciar la encuesta, le sugerimos indagar más acerca del '
+                      'espectro autista pulsando el botón "TEA".',
+                      alignment: TextAlign.center,
+                      textStyle: TEATextStyle.p,
+                    ),
+                  ],
+                ),
               ),
-              Text(
-                'A continuación, se le realizarán seis preguntas para un '
-                'acercamiento del espectro autista en su hijo.\nAntes de '
-                'iniciar la encuesta, le sugerimos indagar más acerca del '
-                'espectro autista pulsando el botón "TEA".',
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
+              SizedBox(height: 42.h),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   TEAButton(
                     action: () => Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => const Info(),
-                      ),
+                      MaterialPageRoute(builder: (context) => const Info()),
                     ),
                     label: 'TEA',
                   ),
@@ -51,7 +66,7 @@ class Home extends StatelessWidget {
                   TEAButton(
                     label: 'Comenzar',
                     icon: Icons.arrow_forward,
-                    theme: TEAComponentTheme.secondary,
+                    theme: TEAWidgetTheme.secondary,
                     action: () {
                       showDialog(
                         context: context,

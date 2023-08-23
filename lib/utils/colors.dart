@@ -14,8 +14,13 @@ const Color primaryLight = Color.fromRGBO(222, 252, 249, 1.0);
 const Color secondary = Color.fromRGBO(50, 132, 255, 1.0);
 const Color secondaryLight = Color.fromRGBO(138, 185, 255, 1.0);
 const Color shadowColor = Color.fromRGBO(0, 0, 0, 0.25);
-const Shadow mainShadow = Shadow(
+const Shadow titleShadow = Shadow(
   color: shadowColor,
   offset: Offset(0.0, 4.0),
   blurRadius: 4,
+);
+const Shadow textShadow = Shadow(
+  color: shadowColor,
+  offset: Offset(0.0, 2.0),
+  blurRadius: 2,
 );

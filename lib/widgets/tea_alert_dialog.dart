@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/widgets/tea_button.dart';
+import 'package:tea/widgets/tea_text.dart';
 
 class TEAAlertDialog extends StatelessWidget {
   final String title;
@@ -20,24 +23,30 @@ class TEAAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      titlePadding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 24,
+      titlePadding: EdgeInsets.symmetric(
+        horizontal: 24.w,
+        vertical: 24.h,
       ),
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 12,
+      contentPadding: EdgeInsets.symmetric(
+        horizontal: 24.w,
       ),
-      actionsPadding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 24,
+      actionsPadding: EdgeInsets.symmetric(
+        horizontal: 24.w,
+        vertical: 24.h,
       ),
-      title: Text(
+      title: TEAText(
         title,
-        textAlign: TextAlign.center,
+        textStyle: TEATextStyle.p,
+        alignment: TextAlign.center,
+        color: Colors.red,
+        shadows: false,
       ),
-      content: Text(
+      content: TEAText(
         content,
-        textAlign: TextAlign.center,
+        textStyle: TEATextStyle.p,
+        alignment: TextAlign.center,
+        color: Colors.black,
+        shadows: false,
       ),
       actions: <Widget>[
         TEAButton(

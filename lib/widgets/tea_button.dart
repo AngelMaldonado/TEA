@@ -1,37 +1,84 @@
 import 'package:flutter/material.dart';
-import 'package:tea/utils/theme.dart';
+import 'package:tea/utils/colors.dart';
+import 'package:tea/utils/constants.dart';
+import 'package:tea/utils/tea_theme.dart';
+import 'package:tea/widgets/tea_text.dart';
 
 class TEAButton extends StatelessWidget {
   final Function action;
-  final String label;
+  final String? label;
   final IconData? icon;
-  final TEAComponentTheme? theme;
+  final TEAWidgetTheme? theme;
 
   const TEAButton({
     super.key,
     required this.action,
-    required this.label,
+    this.label,
     this.icon,
-    this.theme,
+    this.theme = TEAWidgetTheme.primary,
   });
+
+  ButtonStyle _getButtonStyle() {
+    ButtonStyle buttonStyle = theme == TEAWidgetTheme.secondary
+        ? buttonStyles[TEAWidgetTheme.secondary]!
+        : buttonStyles[TEAWidgetTheme.primary]!;
+    if (label == null) {
+      buttonStyle = buttonStyle.copyWith(
+        shape: const MaterialStatePropertyAll(CircleBorder()),
+      );
+    }
+    return buttonStyle;
+  }
+
+  List<Widget> _getButtonContent() {
+    List<Widget> buttonContent = <Widget>[];
+    if (label != null) {
+      buttonContent.add(
+        Text(label!, style: TEAText.textStyles[TEATextStyle.inputText]),
+      );
+    }
+    if (icon != null) {
+      buttonContent.add(Icon(icon));
+    }
+    return buttonContent;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final Text buttonLabel = Text(label);
-    final Icon buttonIcon = Icon(icon);
-    List<Widget> buttonContent = icon != null
-        ? <Widget>[buttonLabel, buttonIcon]
-        : <Widget>[buttonLabel];
-    final ButtonStyle buttonStyle = theme == TEAComponentTheme.secondary
-        ? secondaryButtonTheme
-        : primaryButtonTheme;
     return ElevatedButton(
-      style: buttonStyle,
+      style: _getButtonStyle(),
       onPressed: () => action(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: buttonContent,
+        children: _getButtonContent(),
       ),
     );
   }
+
+  static MaterialStateProperty<Color> _buttonForegroundColor(
+    Color normal,
+    Color pressed,
+  ) {
+    getForegroundColor(Set<MaterialState> states) =>
+        states.contains(MaterialState.pressed) ? pressed : normal;
+
+    return MaterialStateProperty.resolveWith(getForegroundColor);
+  }
+
+  static Map<TEAWidgetTheme, ButtonStyle> buttonStyles = {
+    TEAWidgetTheme.primary: ButtonStyle(
+      padding: MaterialStatePropertyAll(buttonPadding),
+      shape: MaterialStatePropertyAll(buttonBorderRadius),
+      backgroundColor: const MaterialStatePropertyAll(secondary),
+      foregroundColor: _buttonForegroundColor(primaryLight, Colors.black),
+      overlayColor: const MaterialStatePropertyAll(secondaryLight),
+    ),
+    TEAWidgetTheme.secondary: ButtonStyle(
+      padding: MaterialStatePropertyAll(buttonPadding),
+      shape: MaterialStatePropertyAll(buttonBorderRadius),
+      backgroundColor: const MaterialStatePropertyAll(primaryLight),
+      foregroundColor: _buttonForegroundColor(Colors.black, primaryLight),
+      overlayColor: const MaterialStatePropertyAll(primaryDark),
+    ),
+  };
 }

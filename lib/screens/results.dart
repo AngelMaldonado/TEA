@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tea/models/tea_record.dart';
 import 'package:tea/utils/colors.dart';
 import 'package:tea/utils/constants.dart';
-import 'package:tea/utils/theme.dart';
+import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/widgets/tea_button.dart';
 
 class Results extends StatelessWidget {
@@ -72,7 +72,7 @@ class Results extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.all(appMargin),
+          padding: appPadding,
           children: <Widget>[
             Text(
               'Resultado',
@@ -100,7 +100,7 @@ class Results extends StatelessWidget {
             TEAButton(
               action: () {},
               label: 'Especialistas',
-              theme: TEAComponentTheme.secondary,
+              theme: TEAWidgetTheme.secondary,
             ),
             const SizedBox(height: 16),
             TEAButton(
