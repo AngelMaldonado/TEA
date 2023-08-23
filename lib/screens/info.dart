@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tea/widgets/appbar.dart';
+import 'package:tea/utils/tea_theme.dart';
+import 'package:tea/widgets/tea_appbar.dart';
+import 'package:tea/widgets/tea_text.dart';
 import '../utils/constants.dart';
 
 class Info extends StatelessWidget {
@@ -51,12 +53,11 @@ class Info extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView.separated(
-          padding: const EdgeInsets.all(appMargin),
-          itemBuilder: (BuildContext context, int index) => Text(
-            info.elementAt(index),
-            style: index.isEven
-                ? Theme.of(context).textTheme.headlineSmall
-                : Theme.of(context).textTheme.bodyMedium,
+          padding: appPadding,
+          itemBuilder: (BuildContext context, int index) => TEAText(
+            info[index],
+            textStyle: index.isEven ? TEATextStyle.h3 : TEATextStyle.p,
+            alignment: index.isEven ? TextAlign.center : TextAlign.start,
           ),
           separatorBuilder: (BuildContext context, int index) =>
               const SizedBox(height: 12),

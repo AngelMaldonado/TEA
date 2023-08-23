@@ -7,10 +7,17 @@
 /// Facultad de Ingeniería
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-const double appMargin = 24;
+EdgeInsets appPadding = EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h);
+EdgeInsets buttonPadding = EdgeInsets.symmetric(
+  horizontal: 12.w,
+  vertical: 12.h,
+);
+RoundedRectangleBorder buttonBorderRadius = RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(28.h),
+);
 const double mainSpacing = 12;
-const EdgeInsets buttonPadding = EdgeInsets.all(12);
 const EdgeInsets textButtonPadding = EdgeInsets.symmetric(
   horizontal: 12,
   vertical: 8,

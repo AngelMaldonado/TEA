@@ -10,15 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tea/models/initial_info.dart';
 import 'package:tea/utils/colors.dart';
-import 'package:tea/utils/fonts.dart';
-import 'package:tea/utils/theme.dart';
+import 'package:tea/widgets/tea_text.dart';
+import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/widgets/tea_button.dart';
 import 'package:tea/widgets/tea_checkbox_group.dart';
 import 'package:tea/widgets/tea_combobox.dart';
 import 'package:tea/widgets/tea_range_selector.dart';
 
 import '../utils/constants.dart';
-import '../widgets/appbar.dart';
+import '../widgets/tea_appbar.dart';
 
 class InitialData extends StatefulWidget {
   final InitialInfo initialInfo;
@@ -66,6 +66,7 @@ class _InitialDataState extends State<InitialData>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
@@ -80,7 +81,7 @@ class _InitialDataState extends State<InitialData>
       ),
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.all(appMargin),
+          padding: appPadding,
           children: <Widget>[
             Text(
               '👦 Edad',
@@ -164,7 +165,7 @@ class _InitialDataState extends State<InitialData>
               action: _validateForm,
               label: 'Siguiente',
               icon: Icons.arrow_forward,
-              theme: TEAComponentTheme.secondary,
+              theme: TEAWidgetTheme.secondary,
             ),
           ],
         ),

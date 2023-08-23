@@ -7,12 +7,13 @@
 /// Facultad de Ingeniería
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:tea/models/answer.dart';
 import 'package:tea/models/tea_record.dart';
 import 'package:tea/provider.dart';
 import 'package:tea/screens/splash.dart';
-import 'package:tea/utils/theme.dart';
+import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/routes.dart';
 
 class App extends StatefulWidget {
@@ -25,16 +26,25 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'TEA',
-      theme: mainTheme,
-      initialRoute: 'splash',
-      routes: {
-        'splash': (context) => const Splash(),
-        'home': (context) => const Home(),
-        'info': (context) => const Info(),
-        'questions': (context) => const Questions(),
-      },
+    final MediaQueryData query = MediaQuery.of(context);
+    return ScreenUtilInit(
+      designSize: const Size(393, 852),
+      child: MediaQuery(
+        data: query.copyWith(
+          textScaleFactor: query.textScaleFactor.clamp(1.0, 1.06),
+        ),
+        child: MaterialApp(
+          title: 'TEA',
+          theme: TEATheme.mainTheme(),
+          initialRoute: 'splash',
+          routes: {
+            'splash': (context) => const Splash(),
+            'home': (context) => const Home(),
+            'info': (context) => const Info(),
+            'questions': (context) => const Questions(),
+          },
+        ),
+      ),
     );
   }
 }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tea/models/answer.dart';
 import 'package:tea/utils/constants.dart';
-import 'package:tea/utils/theme.dart';
-import 'package:tea/widgets/appbar.dart';
+import 'package:tea/utils/tea_theme.dart';
+import 'package:tea/widgets/tea_appbar.dart';
 import 'package:tea/widgets/tea_button.dart';
 import 'package:tea/widgets/tea_checkbox_group.dart';
 
@@ -56,7 +56,7 @@ class _TEAQuestionState extends State<TEAQuestion> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(appMargin),
+          padding: appPadding,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -84,7 +84,7 @@ class _TEAQuestionState extends State<TEAQuestion> {
                     : widget.onNextAction,
                 label: 'Siguiente',
                 icon: Icons.arrow_forward,
-                theme: TEAComponentTheme.secondary,
+                theme: TEAWidgetTheme.secondary,
               ),
             ],
           ),
