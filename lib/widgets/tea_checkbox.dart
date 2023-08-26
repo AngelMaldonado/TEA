@@ -7,6 +7,9 @@
 /// Facultad de Ingeniería
 
 import 'package:flutter/material.dart';
+import 'package:tea/utils/colors.dart';
+import 'package:tea/utils/tea_theme.dart';
+import 'package:tea/widgets/tea_text.dart';
 
 class TEACheckbox extends StatelessWidget {
   final String title;
@@ -24,7 +27,12 @@ class TEACheckbox extends StatelessWidget {
   Widget build(BuildContext context) {
     return CheckboxListTile(
       contentPadding: EdgeInsets.zero,
-      title: Text(title, style: Theme.of(context).textTheme.bodyMedium),
+      title: TEAText(
+        title,
+        textStyle: TEATextStyle.inputText,
+        color: primaryLight,
+        shadows: true,
+      ),
       value: value,
       onChanged: (_) => toggleAction(title),
       controlAffinity: ListTileControlAffinity.leading,

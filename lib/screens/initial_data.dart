@@ -8,6 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tea/models/initial_info.dart';
 import 'package:tea/utils/colors.dart';
 import 'package:tea/widgets/tea_text.dart';
@@ -83,17 +84,14 @@ class _InitialDataState extends State<InitialData>
         child: ListView(
           padding: appPadding,
           children: <Widget>[
-            Text(
-              '👦 Edad',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: mainSpacing),
-            Text(
+            const TEAText('🔢 Edad', textStyle: TEATextStyle.h2),
+            SizedBox(height: mainSpacing),
+            TEAText(
               '${widget.initialInfo.age} Meses',
-              style: Theme.of(context).textTheme.headlineSmall,
-              textAlign: TextAlign.center,
+              textStyle: TEATextStyle.h3,
+              alignment: TextAlign.center,
             ),
-            const SizedBox(height: mainSpacing),
+            SizedBox(height: mainSpacing),
             TEARangeSelector(
               valueChanged: (newAge) => setState(
                 () => widget.initialInfo.age = newAge.toInt(),
@@ -101,31 +99,20 @@ class _InitialDataState extends State<InitialData>
               value: widget.initialInfo.age.toDouble(),
               min: 18,
               max: 24,
-              minLabel: Text(
-                '18',
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              maxLabel: Text(
-                '24',
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
+              minLabel: const TEAText('18', textStyle: TEATextStyle.h3),
+              maxLabel: const TEAText('24', textStyle: TEATextStyle.h3),
             ),
-            const SizedBox(height: mainSpacing),
-            Text(
-              '♀️♂️ Sexo',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            SizedBox(height: mainSpacing),
+            const TEAText('♀️♂️ Sexo', textStyle: TEATextStyle.h2),
             TEACheckBoxGroup(
               options: _sex,
-              onSelectedValueChanged: (String selectedSex) =>
-                  widget.initialInfo.sex = selectedSex.substring(2),
+              onSelectedValueChanged: (String selectedSex) {
+                widget.initialInfo.sex = selectedSex.substring(2);
+              },
             ),
-            const SizedBox(height: mainSpacing),
-            Text(
-              '📍 Municipio',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: mainSpacing),
+            SizedBox(height: mainSpacing),
+            const TEAText('📍 Municipio', textStyle: TEATextStyle.h2),
+            SizedBox(height: mainSpacing),
             TEAComboBox(
               placeHolder: 'Elige un municipio',
               options: InitialInfo.municipalities,
@@ -133,19 +120,17 @@ class _InitialDataState extends State<InitialData>
                 widget.initialInfo.municipality = selection;
               },
             ),
-            const SizedBox(height: mainSpacing),
-            Text(
-              '🏷️ Código Postal',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: mainSpacing),
+            SizedBox(height: mainSpacing),
+            const TEAText('🏷️ Código Postal', textStyle: TEATextStyle.h2),
+            SizedBox(height: mainSpacing),
             TextField(
+              autofocus: false,
               maxLength: 5,
               keyboardType: TextInputType.number,
               inputFormatters: <TextInputFormatter>[
                 FilteringTextInputFormatter.digitsOnly,
               ],
-              style: inputTextDark,
+              style: TEAText.textStyles[TEATextStyle.inputText],
               decoration: InputDecoration(
                 counterText: '',
                 contentPadding: buttonPadding,
@@ -153,14 +138,14 @@ class _InitialDataState extends State<InitialData>
                 fillColor: primaryLight,
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(inputBorderRadius),
                 ),
               ),
               onChanged: (String value) {
                 widget.initialInfo.cp = int.parse(value);
               },
             ),
-            const SizedBox(height: mainSpacing * 2),
+            SizedBox(height: mainSpacing * 2),
             TEAButton(
               action: _validateForm,
               label: 'Siguiente',

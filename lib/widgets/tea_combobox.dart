@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tea/utils/colors.dart';
+import 'package:tea/utils/constants.dart';
 import 'package:tea/utils/tea_theme.dart';
+import 'package:tea/widgets/tea_button.dart';
+import 'package:tea/widgets/tea_text.dart';
 
 class TEAComboBox extends StatefulWidget {
   final String placeHolder;
@@ -31,7 +35,7 @@ class _TEAComboBoxState extends State<TEAComboBox> {
     }
 
     return ElevatedButton(
-      style: primaryComboBoxTheme,
+      style: comboBoxStyles[TEAWidgetTheme.secondary],
       onPressed: () {
         showDialog(
           context: context,
@@ -42,9 +46,11 @@ class _TEAComboBoxState extends State<TEAComboBox> {
                 itemBuilder: (context, index) => TextButton(
                   style: listTextButtonTheme,
                   onPressed: () => optionSelected(widget.options[index]),
-                  child: Text(
+                  child: TEAText(
                     widget.options[index],
-                    textAlign: TextAlign.center,
+                    textStyle: TEATextStyle.inputText,
+                    alignment: TextAlign.center,
+                    color: Colors.black,
                   ),
                 ),
                 separatorBuilder: (context, index) =>
@@ -59,9 +65,11 @@ class _TEAComboBoxState extends State<TEAComboBox> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Expanded(
-            child: Text(
+            child: TEAText(
               selectedValue.isEmpty ? widget.placeHolder : selectedValue,
-              overflow: TextOverflow.ellipsis,
+              textStyle: TEATextStyle.inputText,
+              shadows: false,
+              color: Colors.black,
             ),
           ),
           const Expanded(flex: 0, child: Icon(Icons.arrow_drop_down)),
@@ -69,4 +77,35 @@ class _TEAComboBoxState extends State<TEAComboBox> {
       ),
     );
   }
+
+  static MaterialStateProperty<Color> _comboBoxForegroundColor(
+    Color normal,
+    Color pressed,
+  ) {
+    getForegroundColor(Set<MaterialState> states) =>
+        states.contains(MaterialState.pressed) ? pressed : normal;
+
+    return MaterialStateProperty.resolveWith(getForegroundColor);
+  }
+
+  static Map<TEAWidgetTheme, ButtonStyle> comboBoxStyles = {
+    TEAWidgetTheme.primary: ButtonStyle(
+      padding: MaterialStatePropertyAll(buttonPadding),
+      shape: MaterialStatePropertyAll(buttonBorderRadius),
+      backgroundColor: const MaterialStatePropertyAll(secondary),
+      foregroundColor: _comboBoxForegroundColor(primaryLight, Colors.black),
+      overlayColor: const MaterialStatePropertyAll(secondaryLight),
+    ),
+    TEAWidgetTheme.secondary: ButtonStyle(
+      padding: MaterialStatePropertyAll(buttonPadding),
+      shape: MaterialStatePropertyAll(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(inputBorderRadius),
+        ),
+      ),
+      backgroundColor: const MaterialStatePropertyAll(primaryLight),
+      foregroundColor: _comboBoxForegroundColor(Colors.black, primaryLight),
+      overlayColor: const MaterialStatePropertyAll(primaryDark),
+    ),
+  };
 }

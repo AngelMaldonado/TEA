@@ -11,13 +11,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 EdgeInsets appPadding = EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h);
 EdgeInsets buttonPadding = EdgeInsets.symmetric(
-  horizontal: 12.w,
-  vertical: 12.h,
+  horizontal: 12.sp,
+  vertical: 12.sp,
 );
+double inputBorderRadius = 12.h;
+double mainSpacing = 12.sp;
 RoundedRectangleBorder buttonBorderRadius = RoundedRectangleBorder(
   borderRadius: BorderRadius.circular(28.h),
 );
-const double mainSpacing = 12;
+OutlineInputBorder inputWidgetBorder = OutlineInputBorder(
+  borderSide: BorderSide.none,
+  borderRadius: BorderRadius.circular(inputBorderRadius),
+);
 const EdgeInsets textButtonPadding = EdgeInsets.symmetric(
   horizontal: 12,
   vertical: 8,
