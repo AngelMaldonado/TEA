@@ -6,6 +6,7 @@ import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/widgets/tea_appbar.dart';
 import 'package:tea/widgets/tea_button.dart';
 import 'package:tea/widgets/tea_checkbox_group.dart';
+import 'package:tea/widgets/tea_text.dart';
 
 class TEAQuestion extends StatefulWidget {
   final Answer answer;
@@ -58,26 +59,22 @@ class _TEAQuestionState extends State<TEAQuestion> {
         child: Padding(
           padding: appPadding,
           child: Column(
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
+              TEAText(
                 widget.question,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  shadows: [], // <- Eliminar del tema principal de bodyMedium
-                ),
+                textStyle: TEATextStyle.p,
+                alignment: TextAlign.center,
               ),
-              Expanded(
-                flex: 1,
-                child: Lottie.asset(widget.animationJSONPath),
-              ),
-              const SizedBox(height: mainSpacing * 2),
+              Expanded(child: Lottie.asset(widget.animationJSONPath)),
+              SizedBox(height: mainSpacing * 2),
               TEACheckBoxGroup(
                 options: widget.answer.options,
                 onSelectedValueChanged: (_) {},
               ),
-              const SizedBox(height: mainSpacing * 2),
+              SizedBox(height: mainSpacing * 2),
               TEAButton(
                 action: widget.validateSelection
                     ? validateSelection

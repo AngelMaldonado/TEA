@@ -31,18 +31,18 @@ class TEAAppBar extends StatelessWidget {
           leading: Transform.translate(
             offset: const Offset(-10, 0),
             child: TEAButton(
-              action: () => Navigator.pop(context),
+              action: () => action(),
               icon: Icons.arrow_back_ios_new,
               theme: TEAWidgetTheme.secondary,
             ),
           ),
-          centerTitle: true,
+          centerTitle: centerTitle,
           title: centerTitle == false
-              ? const Align(
-                  alignment: Alignment.center,
-                  child: TEAText('TEA', textStyle: TEATextStyle.h2),
+              ? Align(
+                  alignment: Alignment.centerRight,
+                  child: TEAText(title, textStyle: TEATextStyle.h2),
                 )
-              : const TEAText('TEA', textStyle: TEATextStyle.h2),
+              : TEAText(title, textStyle: TEATextStyle.h2),
         ),
       ),
     );

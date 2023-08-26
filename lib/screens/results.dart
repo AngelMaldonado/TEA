@@ -7,6 +7,7 @@ import 'package:tea/utils/colors.dart';
 import 'package:tea/utils/constants.dart';
 import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/widgets/tea_button.dart';
+import 'package:tea/widgets/tea_text.dart';
 
 class Results extends StatelessWidget {
   final TEARecord teaRecord;
@@ -32,12 +33,12 @@ class Results extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
+                TEAText(
                   '${answer + 1}',
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  textStyle: TEATextStyle.h3,
                 ),
                 const SizedBox(width: 24),
-                Flexible(child: Text(teaRecord.answers[answer].question)),
+                Flexible(child: TEAText(teaRecord.answers[answer].question)),
               ],
             ),
             const SizedBox(height: 12),
@@ -51,10 +52,9 @@ class Results extends StatelessWidget {
                 children: <Widget>[
                   SvgPicture.asset('assets/icons/answer_icon.svg'),
                   const SizedBox(width: 14),
-                  Text(
+                  TEAText(
                     teaRecord.answers[answer].getSelectedOption(),
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    textAlign: TextAlign.start,
+                    shadows: false,
                   ),
                 ],
               ),
@@ -74,27 +74,26 @@ class Results extends StatelessWidget {
         child: ListView(
           padding: appPadding,
           children: <Widget>[
-            Text(
+            const TEAText(
               'Resultado',
-              style: Theme.of(context).textTheme.headlineMedium,
-              textAlign: TextAlign.center,
+              textStyle: TEATextStyle.h2,
+              alignment: TextAlign.center,
             ),
             const SizedBox(height: 32),
-            Text(
+            TEAText(
               _resultText(),
-              style: Theme.of(context).textTheme.headlineMedium,
-              textAlign: TextAlign.center,
+              textStyle: TEATextStyle.h2,
+              alignment: TextAlign.center,
             ),
             const SizedBox(height: 32),
             Column(
               children: _answersWidgets(context),
             ),
-            Text(
+            const TEAText(
               'Recuerde que este resultado no constituye un diagnóstico, '
               'pero es importante que consulte con un profesional de la '
               'salud para una evaluación más precisa.',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyLarge,
+              alignment: TextAlign.center,
             ),
             const SizedBox(height: 32),
             TEAButton(

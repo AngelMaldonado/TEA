@@ -15,7 +15,7 @@ const String appFontFamily = 'Montserrat';
 
 class TEAText extends StatelessWidget {
   final String? data;
-  final TEATextStyle textStyle;
+  final TEATextStyle? textStyle;
   final TextAlign? alignment;
   final Color? color;
   final bool? shadows;
@@ -23,7 +23,7 @@ class TEAText extends StatelessWidget {
   const TEAText(
     this.data, {
     super.key,
-    required this.textStyle,
+    this.textStyle = TEATextStyle.p,
     this.alignment = TextAlign.start,
     this.color,
     this.shadows = true,
@@ -45,7 +45,7 @@ class TEAText extends StatelessWidget {
     return Text(
       data!,
       textAlign: alignment,
-      style: getStyle(textStyle),
+      style: getStyle(textStyle!),
     );
   }
 
@@ -56,15 +56,16 @@ class TEAText extends StatelessWidget {
       color: primaryLight,
       shadows: const <Shadow>[titleShadow],
     ),
-    TEATextStyle.h3: const TextStyle(
-      fontSize: 28,
+    TEATextStyle.h3: TextStyle(
+      fontSize: 28.sp,
       fontWeight: FontWeight.bold,
       color: primaryLight,
-      shadows: <Shadow>[titleShadow],
+      shadows: const <Shadow>[titleShadow],
     ),
     TEATextStyle.inputText: TextStyle(
       fontSize: 24.sp,
       fontWeight: FontWeight.normal,
+      shadows: const <Shadow>[textShadow],
     ),
     TEATextStyle.p: TextStyle(
       fontSize: 20.sp,

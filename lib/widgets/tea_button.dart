@@ -34,7 +34,7 @@ class TEAButton extends StatelessWidget {
     List<Widget> buttonContent = <Widget>[];
     if (label != null) {
       buttonContent.add(
-        Text(label!, style: TEAText.textStyles[TEATextStyle.inputText]),
+        TEAText(label, textStyle: TEATextStyle.inputText, shadows: false),
       );
     }
     if (icon != null) {
