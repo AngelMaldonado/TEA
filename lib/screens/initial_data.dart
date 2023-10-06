@@ -1,5 +1,5 @@
 /// Archivo: initial_data.dart
-/// Autores: Angel de Jesús Maldonado Juárez
+/// Autores: Angel de Jesús Maldonado Juárez & Carlos Andrés de la Rosa
 /// Fecha: 31 de julio del 2023
 /// Descripción: Pantalla de recaudación de información principal
 ///
@@ -8,7 +8,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tea/models/initial_info.dart';
 import 'package:tea/utils/colors.dart';
 import 'package:tea/widgets/tea_text.dart';

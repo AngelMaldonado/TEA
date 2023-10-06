@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "70507233363",
+    "project_id": "appautismo-5daeb",
+    "storage_bucket": "appautismo-5daeb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70507233363:android:48aa92f5018987374286a6",
+        "android_client_info": {
+          "package_name": "com.example.tea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70507233363-9pcp6or8eckv15tlumlstbt0he8r30g9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKlroZJVEMUdqti6jyrrbMZt7W25q0bGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70507233363-9pcp6or8eckv15tlumlstbt0he8r30g9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
