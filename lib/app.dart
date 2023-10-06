@@ -8,10 +8,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
-import 'package:tea/models/answer.dart';
-import 'package:tea/models/tea_record.dart';
-import 'package:tea/provider.dart';
 import 'package:tea/screens/splash.dart';
 import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/routes.dart';
@@ -35,6 +31,7 @@ class _AppState extends State<App> {
         ),
         child: MaterialApp(
           title: 'TEA',
+          debugShowCheckedModeBanner: false,
           theme: TEATheme.mainTheme(),
           initialRoute: 'splash',
           routes: {
