@@ -11,7 +11,7 @@ class Questions extends StatefulWidget {
 }
 
 class _QuestionsState extends State<Questions> {
-  final TEARecord _teaRecord = TEARecord();
+  late final TEARecord _teaRecord;
   late List<Widget> _pageViewWidgets;
   late final PageController _pageController;
   int _currentPage = 0;
@@ -20,6 +20,7 @@ class _QuestionsState extends State<Questions> {
   @override
   void initState() {
     super.initState();
+    _teaRecord = TEARecord();
     _pageViewWidgets = _generatePageViewWidgets();
     _pageController = PageController(initialPage: _currentPage);
   }
@@ -54,6 +55,7 @@ class _QuestionsState extends State<Questions> {
   void _nextPage() {
     setState(() {
       if (_currentPage == _teaRecord.answers.length) {
+        _teaRecord.generateResult();
         Navigator.push(
           context,
           MaterialPageRoute(
