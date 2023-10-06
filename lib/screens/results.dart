@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tea/models/tea_record.dart';
@@ -8,24 +6,41 @@ import 'package:tea/utils/constants.dart';
 import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/widgets/tea_button.dart';
 import 'package:tea/widgets/tea_text.dart';
+import 'package:tea/guarda_datos.dart';
+import 'package:tea/provider.dart';
+import 'package:provider/provider.dart';
 
 class Results extends StatelessWidget {
   final TEARecord teaRecord;
-
-  const Results({super.key, required this.teaRecord});
-
+  bool resultadoDiagnostico = false;
+  Results({super.key, required this.teaRecord});
+  
   String _resultText() {
     String resultText;
     if (teaRecord.answers.any((answer) => answer.options['Siempre'] == true)) {
       resultText = 'Existe sospecha de TEA';
+      resultadoDiagnostico = true;
     } else {
       resultText = 'No existe sospecha de TEA';
+      resultadoDiagnostico = false;
     }
     return resultText;
   }
 
   List<Widget> _answersWidgets(BuildContext context) {
     List<Widget> answersWidgets = <Widget>[];
+    List<String> respuestas = teaRecord.getAnswerStrings();
+    final initialDataProvider = Provider.of<InitialDataProvider>(context);
+
+  // Usar los valores actualizados
+  guardaDatos(
+    initialDataProvider.cp,
+    initialDataProvider.edad,
+    initialDataProvider.municipio,
+    initialDataProvider.sexo,
+    respuestas,
+    resultadoDiagnostico,
+  );
     for (int answer = 0; answer < teaRecord.answers.length; answer++) {
       answersWidgets.add(
         Column(

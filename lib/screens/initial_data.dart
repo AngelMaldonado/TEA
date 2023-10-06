@@ -8,7 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:tea/models/initial_info.dart';
 import 'package:tea/utils/colors.dart';
 import 'package:tea/widgets/tea_text.dart';
@@ -17,6 +17,7 @@ import 'package:tea/widgets/tea_button.dart';
 import 'package:tea/widgets/tea_checkbox_group.dart';
 import 'package:tea/widgets/tea_combobox.dart';
 import 'package:tea/widgets/tea_range_selector.dart';
+import 'package:tea/provider.dart';
 
 import '../utils/constants.dart';
 import '../widgets/tea_appbar.dart';
@@ -32,7 +33,7 @@ class InitialData extends StatefulWidget {
     required this.onNextAction,
     required this.onBackAction,
   });
-
+  
   @override
   State<InitialData> createState() => _InitialDataState();
 }
@@ -44,26 +45,30 @@ class _InitialDataState extends State<InitialData>
   void _validateForm() {
     if (widget.initialInfo.sex.isEmpty ||
         widget.initialInfo.municipality.isEmpty ||
-        widget.initialInfo.cp.toString().length < 5) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          Future.delayed(
-            const Duration(seconds: 2),
-            () => Navigator.pop(context),
-          );
-          return const AlertDialog(
-            content: Text(
-              'Porfavor llene todos los campos antes de continuar',
-              textAlign: TextAlign.center,
-            ),
-          );
-        },
-      );
-    } else {
-      widget.onNextAction();
-    }
-  }
+        widget.initialInfo.cp.toString().length < 5) 
+      {
+        showDialog(
+          context: context,
+          builder: (context) {
+            Future.delayed(
+              const Duration(seconds: 2),
+              () => Navigator.pop(context),
+            );
+            return const AlertDialog(
+              content: Text(
+                'Porfavor llene todos los campos antes de continuar',
+                textAlign: TextAlign.center,
+              ),
+            );
+          },
+        );
+      } else {
+          InitialDataProvider initialDataProvider = Provider.of<InitialDataProvider>(context, listen: false);
+          initialDataProvider.setData(newCp: widget.initialInfo.cp, newEdad: widget.initialInfo.age, newMunicipio: widget.initialInfo.municipality, newSexo: widget.initialInfo.sex);
+          widget.onNextAction();
+        }
+}
+
 
   @override
   Widget build(BuildContext context) {

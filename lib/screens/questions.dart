@@ -17,33 +17,11 @@ class _QuestionsState extends State<Questions> {
   int _currentPage = 0;
   final Duration _pageTransitionDuration = const Duration(milliseconds: 500);
 
-  void _nextPage() {
-    setState(() {
-      if (_currentPage == _teaRecord.answers.length) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Results(teaRecord: _teaRecord),
-          ),
-        );
-      } else {
-        _pageController.animateToPage(
-          ++_currentPage,
-          duration: _pageTransitionDuration,
-          curve: Curves.easeOut,
-        );
-      }
-    });
-  }
-
-  void _previousPage() {
-    setState(() {
-      _pageController.animateToPage(
-        --_currentPage,
-        duration: _pageTransitionDuration,
-        curve: Curves.easeOut,
-      );
-    });
+  @override
+  void initState() {
+    super.initState();
+    _pageViewWidgets = _generatePageViewWidgets();
+    _pageController = PageController(initialPage: _currentPage);
   }
 
   List<Widget> _generatePageViewWidgets() {
@@ -73,11 +51,35 @@ class _QuestionsState extends State<Questions> {
     return pageViewWidgets;
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _pageViewWidgets = _generatePageViewWidgets();
-    _pageController = PageController(initialPage: _currentPage);
+  void _nextPage() {
+    setState(() {
+      if (_currentPage == _teaRecord.answers.length) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Builder(
+              builder: (context) => Results(teaRecord: _teaRecord),
+            ),
+          ),
+        );
+      } else {
+        _pageController.animateToPage(
+          ++_currentPage,
+          duration: _pageTransitionDuration,
+          curve: Curves.easeOut,
+        );
+      }
+    });
+  }
+
+  void _previousPage() {
+    setState(() {
+      _pageController.animateToPage(
+        --_currentPage,
+        duration: _pageTransitionDuration,
+        curve: Curves.easeOut,
+      );
+    });
   }
 
   @override

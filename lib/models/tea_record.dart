@@ -18,4 +18,8 @@ class TEARecord extends ChangeNotifier {
     answers[index] = answer;
     notifyListeners();
   }
+
+  List<String> getAnswerStrings() {
+    return answers.map((answer) => answer.getSelectedOption()).toList();
+  }
 }

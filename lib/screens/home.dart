@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tea/screens/info.dart';
 import 'package:tea/utils/constants.dart';
 import 'package:tea/widgets/tea_text.dart';
@@ -28,8 +27,8 @@ class Home extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    SvgPicture.asset(
-                      'assets/icons/logo_family.svg',
+                    Image.asset(
+                      'assets/icons/logo.png',
                       width: MediaQuery.of(context).size.width * 0.6,
                     ),
                     SizedBox(height: 16.h),

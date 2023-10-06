@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tea/utils/colors.dart';
 import 'package:tea/utils/constants.dart';
 import 'package:tea/utils/tea_theme.dart';
-import 'package:tea/widgets/tea_button.dart';
 import 'package:tea/widgets/tea_text.dart';
 
 class TEAComboBox extends StatefulWidget {
