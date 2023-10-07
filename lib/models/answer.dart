@@ -1,17 +1,18 @@
 class Answer {
   static List<String> questions = <String>[
-    '¿Tiene interés por los otros y responde cuando se le habla?',
-    '¿Usa el dedo índice para señalar, para indicar interés por algo o le lleva objetos para mostrar como indicando “mira”?',
+    '¿Tiene interés por las otras personas?',
+    '¿Señala para pedir lo que quiere?',
+    '¿Señala para mostrar lo que le gusta?',
     '¿Responde a su nombre cuando se le llama?',
-    '¿Trata de imitar gestos de otros?',
-    '¿Juega adecuadamente con juguetes y no solo metérselos a la boca, aventarlos, formarlos insertarlos?',
+    '¿Juega adecuadamente con juguetes (sin metérselos a la boca, aventarlos, girarlos, o formarlos)?',
     '¿Establece y mantiene el contacto visual con otros?',
+    '¿No lleva cosas cuando se las pides?',
   ];
   final String question;
   Map<String, bool> options = {
-    'Nunca': false,
+    'Rara vez': false,
     'A veces': false,
-    'Siempre': false,
+    'Muchas veces': false,
   };
 
   Answer({required this.question});

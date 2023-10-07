@@ -70,7 +70,7 @@ class TEAText extends StatelessWidget {
     TEATextStyle.p: TextStyle(
       fontSize: 20.sp,
       fontWeight: FontWeight.normal,
-      height: 1,
+      height: 1.2,
       color: primaryLight,
       shadows: const <Shadow>[textShadow],
     ),

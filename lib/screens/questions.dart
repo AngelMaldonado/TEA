@@ -33,10 +33,10 @@ class _QuestionsState extends State<Questions> {
         onBackAction: () => Navigator.pop(context),
       ),
     ];
+
     pageViewWidgets.addAll(
-      List.generate(
-        _teaRecord.answers.length,
-        (index) => TEAQuestion(
+      List.generate(_teaRecord.answers.length, (index) {
+        return TEAQuestion(
           answer: _teaRecord.answers[index],
           totalQuestions: _teaRecord.answers.length,
           currentQuestion: index + 1,
@@ -45,8 +45,12 @@ class _QuestionsState extends State<Questions> {
           onNextAction: _nextPage,
           onBackAction: _previousPage,
           validateSelection: true,
-        ),
-      ),
+        );
+      }),
+    );
+
+    pageViewWidgets.add(
+      Results(teaRecord: _teaRecord, onBackAction: _previousPage),
     );
 
     return pageViewWidgets;
@@ -56,21 +60,12 @@ class _QuestionsState extends State<Questions> {
     setState(() {
       if (_currentPage == _teaRecord.answers.length) {
         _teaRecord.generateResult();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Builder(
-              builder: (context) => Results(teaRecord: _teaRecord),
-            ),
-          ),
-        );
-      } else {
-        _pageController.animateToPage(
-          ++_currentPage,
-          duration: _pageTransitionDuration,
-          curve: Curves.easeOut,
-        );
       }
+      _pageController.animateToPage(
+        ++_currentPage,
+        duration: _pageTransitionDuration,
+        curve: Curves.easeOut,
+      );
     });
   }
 

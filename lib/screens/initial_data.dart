@@ -80,76 +80,90 @@ class _InitialDataState extends State<InitialData>
         ),
       ),
       body: SafeArea(
-        child: ListView(
-          padding: appPadding,
-          children: <Widget>[
-            const TEAText('🔢 Edad', textStyle: TEATextStyle.h2),
-            SizedBox(height: mainSpacing),
-            TEAText(
-              '${widget.initialInfo.age} Meses',
-              textStyle: TEATextStyle.h3,
-              alignment: TextAlign.center,
-            ),
-            SizedBox(height: mainSpacing),
-            TEARangeSelector(
-              valueChanged: (newAge) => setState(
-                () => widget.initialInfo.age = newAge.toInt(),
-              ),
-              value: widget.initialInfo.age.toDouble(),
-              min: 18,
-              max: 24,
-              minLabel: const TEAText('18', textStyle: TEATextStyle.h3),
-              maxLabel: const TEAText('24', textStyle: TEATextStyle.h3),
-            ),
-            SizedBox(height: mainSpacing),
-            const TEAText('♀️♂️ Sexo', textStyle: TEATextStyle.h2),
-            TEACheckBoxGroup(
-              options: _sex,
-              onSelectedValueChanged: (String selectedSex) {
-                widget.initialInfo.sex = selectedSex.substring(2);
-              },
-            ),
-            SizedBox(height: mainSpacing),
-            const TEAText('📍 Municipio', textStyle: TEATextStyle.h2),
-            SizedBox(height: mainSpacing),
-            TEAComboBox(
-              placeHolder: 'Elige un municipio',
-              options: InitialInfo.municipalities,
-              onSelect: (String selection) {
-                widget.initialInfo.municipality = selection;
-              },
-            ),
-            SizedBox(height: mainSpacing),
-            const TEAText('🏷️ Código Postal', textStyle: TEATextStyle.h2),
-            SizedBox(height: mainSpacing),
-            TextField(
-              autofocus: false,
-              maxLength: 5,
-              keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              style: TEAText.textStyles[TEATextStyle.inputText],
-              decoration: InputDecoration(
-                counterText: '',
-                contentPadding: buttonPadding,
-                filled: true,
-                fillColor: primaryLight,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(inputBorderRadius),
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Padding(
+                padding: appPadding,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    const TEAText('🔢 Edad', textStyle: TEATextStyle.h2),
+                    SizedBox(height: mainSpacing),
+                    TEAText(
+                      '${widget.initialInfo.age} Meses',
+                      textStyle: TEATextStyle.h3,
+                      alignment: TextAlign.center,
+                    ),
+                    SizedBox(height: mainSpacing),
+                    TEARangeSelector(
+                      valueChanged: (newAge) => setState(
+                        () => widget.initialInfo.age = newAge.toInt(),
+                      ),
+                      value: widget.initialInfo.age.toDouble(),
+                      min: 18,
+                      max: 24,
+                      minLabel: const TEAText('18', textStyle: TEATextStyle.h3),
+                      maxLabel: const TEAText('24', textStyle: TEATextStyle.h3),
+                    ),
+                    SizedBox(height: mainSpacing),
+                    const TEAText('♀️♂️ Sexo', textStyle: TEATextStyle.h2),
+                    SizedBox(height: mainSpacing),
+                    TEACheckBoxGroup(
+                      options: _sex,
+                      onSelectedValueChanged: (String selectedSex) {
+                        widget.initialInfo.sex = selectedSex.substring(2);
+                      },
+                    ),
+                    SizedBox(height: mainSpacing),
+                    const TEAText('📍 Municipio', textStyle: TEATextStyle.h2),
+                    SizedBox(height: mainSpacing),
+                    TEAComboBox(
+                      placeHolder: 'Elige un municipio',
+                      options: InitialInfo.municipalities,
+                      onSelect: (String selection) {
+                        widget.initialInfo.municipality = selection;
+                      },
+                    ),
+                    SizedBox(height: mainSpacing),
+                    const TEAText('🏷️ Código Postal',
+                        textStyle: TEATextStyle.h2),
+                    SizedBox(height: mainSpacing),
+                    TextField(
+                      autofocus: false,
+                      maxLength: 5,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
+                      style: TEAText.textStyles[TEATextStyle.inputText],
+                      decoration: InputDecoration(
+                        counterText: '',
+                        contentPadding: buttonPadding,
+                        filled: true,
+                        fillColor: primaryLight,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius:
+                              BorderRadius.circular(inputBorderRadius),
+                        ),
+                      ),
+                      onChanged: (String value) {
+                        widget.initialInfo.cp = int.parse(value);
+                      },
+                    ),
+                    SizedBox(height: mainSpacing),
+                    TEAButton(
+                      action: _validateForm,
+                      label: 'Siguiente',
+                      icon: Icons.arrow_forward,
+                      theme: TEAWidgetTheme.secondary,
+                    ),
+                  ],
                 ),
               ),
-              onChanged: (String value) {
-                widget.initialInfo.cp = int.parse(value);
-              },
-            ),
-            SizedBox(height: mainSpacing * 2),
-            TEAButton(
-              action: _validateForm,
-              label: 'Siguiente',
-              icon: Icons.arrow_forward,
-              theme: TEAWidgetTheme.secondary,
             ),
           ],
         ),

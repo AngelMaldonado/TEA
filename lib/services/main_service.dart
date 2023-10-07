@@ -1,12 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tea/models/tea_record.dart';
 
 // Función para enviar datos a Firestore
-Future<bool> saveTEARecord(TEARecord teaRecord) async {
+Future saveTEARecord(TEARecord teaRecord) async {
   final CollectionReference collection =
       FirebaseFirestore.instance.collection('registros');
   // Crear una referencia a la colección en Firestore
   try {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('notFirstTime')) {
+      throw Exception();
+    }
     await collection.add({
       'timestamp': FieldValue.serverTimestamp(),
       'municipio': teaRecord.initialInfo.municipality,
@@ -16,8 +21,8 @@ Future<bool> saveTEARecord(TEARecord teaRecord) async {
       'respuestas': teaRecord.getAnswerStrings(),
       'resultado': teaRecord.hasAutism,
     });
-    return true;
+    prefs.setBool('notFirstTime', true);
   } catch (e) {
-    return false;
+    return;
   }
 }

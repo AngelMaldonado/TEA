@@ -20,7 +20,6 @@ enum TEATextStyle {
   h2,
   h3,
   inputText,
-  inputTextSecondary,
   p,
 }
 
@@ -57,15 +56,7 @@ class TEATheme {
       dialogTheme: DialogTheme(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         backgroundColor: primaryLight,
-        //titleTextStyle: paragraph.copyWith(
-        //  color: Colors.red,
-        //  shadows: [],
       ),
-      //contentTextStyle: paragraph.copyWith(
-      //  color: Colors.black,
-      //  shadows: [],
-      //),
-      //),
       sliderTheme: const SliderThemeData(
         activeTrackColor: primaryLight,
         inactiveTickMarkColor: primaryLight,
@@ -73,6 +64,9 @@ class TEATheme {
         thumbColor: primaryLight,
         thumbShape: RoundSliderThumbShape(enabledThumbRadius: 23),
         trackHeight: 8.0,
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        isDense: true,
       ),
       checkboxTheme: CheckboxThemeData(
         side: const BorderSide(

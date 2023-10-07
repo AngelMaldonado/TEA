@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tea/models/answer.dart';
+import 'package:tea/utils/colors.dart';
 import 'package:tea/utils/constants.dart';
 import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/widgets/tea_appbar.dart';
@@ -65,16 +66,18 @@ class _TEAQuestionState extends State<TEAQuestion> {
             children: [
               TEAText(
                 widget.question,
-                textStyle: TEATextStyle.p,
+                textStyle: TEATextStyle.inputText,
+                color: primaryLight,
+                shadows: false,
                 alignment: TextAlign.center,
               ),
-              Expanded(child: Lottie.asset(widget.animationJSONPath)),
-              SizedBox(height: mainSpacing * 2),
+              Expanded(
+                child: Lottie.asset(widget.animationJSONPath),
+              ),
               TEACheckBoxGroup(
                 options: widget.answer.options,
                 onSelectedValueChanged: (_) {},
               ),
-              SizedBox(height: mainSpacing * 2),
               TEAButton(
                 action: widget.validateSelection
                     ? validateSelection

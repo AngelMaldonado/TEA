@@ -6,28 +6,40 @@ import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/widgets/tea_button.dart';
 import 'package:tea/widgets/tea_text.dart';
 
+import '../widgets/tea_appbar.dart';
+
 class Results extends StatelessWidget {
   final TEARecord teaRecord;
+  final Function onBackAction;
 
-  const Results({super.key, required this.teaRecord});
+  const Results({
+    super.key,
+    required this.teaRecord,
+    required this.onBackAction,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size(
+          MediaQuery.of(context).size.width,
+          MediaQuery.of(context).size.height * 0.1,
+        ),
+        child: TEAAppBar(
+          title: 'Resultado',
+          action: onBackAction,
+        ),
+      ),
       body: SafeArea(
-        child: FutureBuilder<bool>(
+        child: FutureBuilder(
           future: saveTEARecord(teaRecord),
-          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            if (snapshot.hasData) {
-              return ListView(
-                padding: appPadding,
+          builder: (context, _) {
+            return Padding(
+              padding: appPadding,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  const TEAText(
-                    'Resultado',
-                    textStyle: TEATextStyle.h2,
-                    alignment: TextAlign.center,
-                  ),
-                  const SizedBox(height: 32),
                   TEAText(
                     teaRecord.hasAutism
                         ? 'Existe sospecha de TEA'
@@ -35,29 +47,30 @@ class Results extends StatelessWidget {
                     textStyle: TEATextStyle.h2,
                     alignment: TextAlign.center,
                   ),
-                  const SizedBox(height: 32),
                   const TEAText(
                     'Recuerde que este resultado no constituye un diagnóstico, '
                     'pero es importante que consulte con un profesional de la '
                     'salud para una evaluación más precisa.',
                     alignment: TextAlign.center,
                   ),
-                  const SizedBox(height: 32),
-                  TEAButton(
-                    action: () {},
-                    label: 'Especialistas',
-                    theme: TEAWidgetTheme.secondary,
-                  ),
-                  const SizedBox(height: 16),
-                  TEAButton(
-                    action: () => Navigator.pushNamed(context, 'splash'),
-                    label: 'Volver al inicio',
+                  Column(
+                    children: <Widget>[
+                      TEAButton(
+                        action: () =>
+                            Navigator.pushNamed(context, 'references'),
+                        label: 'Referencias',
+                        theme: TEAWidgetTheme.secondary,
+                      ),
+                      SizedBox(height: mainSpacing),
+                      TEAButton(
+                        action: () => Navigator.pushNamed(context, 'splash'),
+                        label: 'Volver al inicio',
+                      ),
+                    ],
                   ),
                 ],
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
+              ),
+            );
           },
         ),
       ),

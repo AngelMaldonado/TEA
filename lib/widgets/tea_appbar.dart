@@ -26,7 +26,6 @@ class TEAAppBar extends StatelessWidget {
           top: appPadding.top,
         ),
         child: AppBar(
-          toolbarHeight: double.infinity,
           clipBehavior: Clip.none,
           leading: Transform.translate(
             offset: const Offset(-10, 0),

@@ -7,6 +7,7 @@
 /// Facultad de Ingeniería
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:tea/screens/home.dart';
 import 'package:tea/utils/colors.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
@@ -68,8 +69,8 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
               ),
               child: FadeTransition(
                 opacity: iconTween.animate(iconAnimation),
-                child: Image.asset(
-                  'assets/icons/logo.png',
+                child: SvgPicture.asset(
+                  'assets/icons/logo.svg',
                   fit: BoxFit.contain,
                 ),
               ),

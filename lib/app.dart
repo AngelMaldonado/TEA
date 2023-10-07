@@ -39,6 +39,7 @@ class _AppState extends State<App> {
             'home': (context) => const Home(),
             'info': (context) => const Info(),
             'questions': (context) => const Questions(),
+            'references': (context) => const References(),
           },
         ),
       ),
