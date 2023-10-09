@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:tea/screens/info.dart';
@@ -13,20 +14,23 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: appPadding,
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: _welcomeWidgets(context),
+    return WillPopScope(
+      onWillPop: () => _showBackButtonWaring(context),
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: appPadding,
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: _welcomeWidgets(context),
+                  ),
                 ),
-              ),
-              _actionWidgets(context),
-            ],
+                _actionWidgets(context),
+              ],
+            ),
           ),
         ),
       ),
@@ -90,6 +94,27 @@ class Home extends StatelessWidget {
             label: 'Continuar',
             icon: Icons.arrow_forward,
             action: () => Navigator.pushNamed(context, 'questions'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _showBackButtonWaring(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => TEAAlertDialog(
+        title: 'Saldrá de la App',
+        content: '¿Está segur@ que desea salir de la App?',
+        actions: <TEAButton>[
+          TEAButton(
+            theme: TEAWidgetTheme.secondary,
+            label: 'Salir',
+            action: () => SystemNavigator.pop(),
+          ),
+          TEAButton(
+            label: 'Seguir en la App',
+            action: () => Navigator.pop(context),
           ),
         ],
       ),

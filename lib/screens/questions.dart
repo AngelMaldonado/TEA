@@ -87,7 +87,7 @@ class _QuestionsState extends State<Questions> {
   _previousPage() {
     setState(() {
       if (_currentPage == 0) {
-        Navigator.pop(context);
+        Navigator.pushNamedAndRemoveUntil(context, 'home', (route) => false);
       }
       _pageController.animateToPage(
         --_currentPage,
