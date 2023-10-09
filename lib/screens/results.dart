@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tea/models/tea_record.dart';
 import 'package:tea/services/main_service.dart';
 import 'package:tea/utils/constants.dart';
+import 'package:tea/utils/fonts.dart';
 import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/widgets/tea_button.dart';
-import 'package:tea/widgets/tea_text.dart';
 
 import '../widgets/tea_appbar.dart';
 
@@ -40,18 +40,19 @@ class Results extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  TEAText(
+                  Text(
                     teaRecord.hasAutism
                         ? 'Existe sospecha de TEA'
                         : 'No existe sospecha de TEA',
-                    textStyle: TEATextStyle.h2,
-                    alignment: TextAlign.center,
+                    style: TextStyles.h2,
+                    textAlign: TextAlign.center,
                   ),
-                  const TEAText(
+                  Text(
                     'Recuerde que este resultado no constituye un diagnóstico, '
                     'pero es importante que consulte con un profesional de la '
                     'salud para una evaluación más precisa.',
-                    alignment: TextAlign.center,
+                    style: TextStyles.p_shadowed,
+                    textAlign: TextAlign.center,
                   ),
                   Column(
                     children: <Widget>[

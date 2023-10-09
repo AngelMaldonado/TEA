@@ -7,15 +7,14 @@
 /// Facultad de Ingeniería
 
 import 'package:flutter/material.dart';
-import 'package:tea/widgets/tea_text.dart';
+import 'package:tea/utils/fonts.dart';
 
 class TEARangeSelector extends StatefulWidget {
   final Function(double) valueChanged;
   final double value;
   final double min;
   final double max;
-  final TEAText minLabel;
-  final TEAText maxLabel;
+  final bool showMinAndMaxLabels;
 
   const TEARangeSelector({
     super.key,
@@ -23,8 +22,7 @@ class TEARangeSelector extends StatefulWidget {
     required this.value,
     required this.min,
     required this.max,
-    required this.minLabel,
-    required this.maxLabel,
+    this.showMinAndMaxLabels = true,
   });
 
   @override
@@ -42,10 +40,17 @@ class _TEARangeSelectorState extends State<TEARangeSelector> {
           value: widget.value.toDouble(),
           onChanged: (newValue) => widget.valueChanged(newValue),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <TEAText>[widget.minLabel, widget.maxLabel],
-        ),
+        Visibility(visible: widget.showMinAndMaxLabels, child: _labelsWidget()),
+      ],
+    );
+  }
+
+  Widget _labelsWidget() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Text>[
+        Text(widget.min.round().toString(), style: TextStyles.h3),
+        Text(widget.max.round().toString(), style: TextStyles.h3),
       ],
     );
   }

@@ -14,8 +14,9 @@ Future saveTEARecord(TEARecord teaRecord) async {
     }
     await collection.add({
       'timestamp': FieldValue.serverTimestamp(),
-      'municipio': teaRecord.initialInfo.municipality,
-      'cp': teaRecord.initialInfo.cp,
+      'estado': teaRecord.initialInfo.location.state,
+      'municipio': teaRecord.initialInfo.location.municipality,
+      'colonia': teaRecord.initialInfo.location.suburb,
       'sexo': teaRecord.initialInfo.sex,
       'edad': teaRecord.initialInfo.age,
       'respuestas': teaRecord.getAnswerStrings(),
