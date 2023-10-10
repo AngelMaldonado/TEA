@@ -65,7 +65,7 @@ class _TEAComboBoxState extends State<TEAComboBox> {
             itemBuilder: (context, index) => TextButton(
               style: ButtonStyles.list,
               onPressed: () => _selectedOptionChanged(widget.options[index]),
-              child: Text(widget.options[index]),
+              child: Text(widget.options[index], textAlign: TextAlign.center),
             ),
             separatorBuilder: (context, index) => SizedBox(height: mainSpacing),
             itemCount: widget.options.length,
@@ -74,16 +74,4 @@ class _TEAComboBoxState extends State<TEAComboBox> {
       },
     );
   }
-
-/*
-  TextButton(
-              style: ButtonStyles.textPrimary,
-              onPressed: () => _selectedOptionChanged(widget.options[index]),
-              child: Text(
-                widget.options[index],
-                style: TextStyles.input,
-                textAlign: TextAlign.center,
-              ),
-            ),
-   */
 }
