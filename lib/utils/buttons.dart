@@ -15,6 +15,7 @@ enum buttonTheme {
   iconSecondary,
   comboBox,
   list,
+  tileButton,
 }
 
 class ButtonStyles {

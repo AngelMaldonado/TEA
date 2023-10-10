@@ -49,7 +49,16 @@ OutlineInputBorder inputWidgetBorder = OutlineInputBorder(
 );
 
 /// Text legends *
+const telHospitalNinoyMujer = '+52 (444) 205 2465';
+const telPaisDeMaravillas = '+52 (934) 832 1000';
+const telTemazcalli = '+52 (444) 812 6196';
+const positiveResultMessage = 'Existe probabilidad de que su hijo tenga TEA';
+const negativeResultMessage = 'No es probable de que su hijo tenga TEA';
 const welcome = 'Bienvenido a TEA';
+const finalMessage =
+    'Recuerde que este resultado no constituye un diagnóstico, '
+    'pero es importante que consulte con un profesional de la '
+    'salud para una evaluación más precisa.';
 const appPurpose = 'El propósito de esta aplicación es recopilar '
     'información sobre el espectro autista en los hijos de los usuarios '
     'y no constituye una prueba oficial de diagnóstico.';

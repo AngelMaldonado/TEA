@@ -1,4 +1,17 @@
 class Answer {
+  final String question;
+  Map<String, bool> options = {
+    'Rara vez': false,
+    'Solo a veces': false,
+    'Muchas veces': false,
+  };
+
+  Answer({required this.question});
+
+  String getSelectedOption() {
+    return options.entries.firstWhere((option) => option.value).key;
+  }
+
   static List<String> questions = <String>[
     '¿Tiene interés por las otras personas?',
     '¿Señala para pedir lo que quiere?',
@@ -8,16 +21,4 @@ class Answer {
     '¿Establece y mantiene el contacto visual con otros?',
     '¿No lleva cosas cuando se las pides?',
   ];
-  final String question;
-  Map<String, bool> options = {
-    'Rara vez': false,
-    'A veces': false,
-    'Muchas veces': false,
-  };
-
-  Answer({required this.question});
-
-  String getSelectedOption() {
-    return options.entries.firstWhere((option) => option.value).key;
-  }
 }

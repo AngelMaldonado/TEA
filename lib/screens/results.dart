@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tea/models/tea_record.dart';
 import 'package:tea/services/main_service.dart';
+import 'package:tea/utils/buttons.dart';
 import 'package:tea/utils/constants.dart';
 import 'package:tea/utils/fonts.dart';
-import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/widgets/tea_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../widgets/tea_appbar.dart';
 
@@ -21,58 +22,87 @@ class Results extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size(
-          MediaQuery.of(context).size.width,
-          MediaQuery.of(context).size.height * 0.1,
-        ),
-        child: TEAAppBar(
-          title: 'Resultado',
-          action: onBackAction,
-        ),
+      appBar: TEAAppBar(
+        title: 'Resultado',
+        action: onBackAction,
       ),
-      body: SafeArea(
-        child: FutureBuilder(
-          future: saveTEARecord(teaRecord),
-          builder: (context, _) {
-            return Padding(
-              padding: appPadding,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    teaRecord.hasAutism
-                        ? 'Existe sospecha de TEA'
-                        : 'No existe sospecha de TEA',
-                    style: TextStyles.h2,
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    'Recuerde que este resultado no constituye un diagnóstico, '
-                    'pero es importante que consulte con un profesional de la '
-                    'salud para una evaluación más precisa.',
-                    style: TextStyles.p_shadowed,
-                    textAlign: TextAlign.center,
-                  ),
-                  Column(
-                    children: <Widget>[
-                      TEAButton(
-                        action: () =>
-                            Navigator.pushNamed(context, 'references'),
-                        label: 'Referencias',
-                        theme: TEAWidgetTheme.secondary,
-                      ),
-                      SizedBox(height: mainSpacing),
-                      TEAButton(
-                        action: () => Navigator.pushNamed(context, 'splash'),
-                        label: 'Volver al inicio',
-                      ),
-                    ],
-                  ),
-                ],
+      body: CustomScrollView(
+        slivers: [
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: SafeArea(
+              child: FutureBuilder(
+                future: saveTEARecord(teaRecord),
+                builder: (context, _) => _resultsWidgets(context),
               ),
-            );
-          },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _resultsWidgets(BuildContext context) {
+    return Padding(
+      padding: appPadding,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          ..._messages(),
+          verticalSpacer,
+          ..._especialistas(),
+          verticalSpacer,
+          TEAButton(
+            action: () => Navigator.pushNamed(context, 'splash'),
+            label: 'Volver al inicio',
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> _messages() {
+    return <Widget>[
+      Text(
+        teaRecord.hasAutism ? positiveResultMessage : negativeResultMessage,
+        style: TextStyles.h3,
+        textAlign: TextAlign.center,
+      ),
+      verticalSpacer,
+      Text(
+        finalMessage,
+        style: TextStyles.p_shadowed,
+        textAlign: TextAlign.center,
+      ),
+    ];
+  }
+
+  List<Widget> _especialistas() {
+    return <Widget>[
+      Text('Algunos especialistas:', style: TextStyles.h3),
+      verticalSpacer,
+      _phoneTile('Hospital del niño y la mujer', telHospitalNinoyMujer),
+      verticalSpacer,
+      _phoneTile('País de las maravillas', telPaisDeMaravillas),
+      verticalSpacer,
+      _phoneTile('Temazcalli', telTemazcalli),
+    ];
+  }
+
+  Widget _phoneTile(String title, String phoneNumber) {
+    return ListTile(
+      title: Text(title, style: TextStyles.p_shadowed),
+      subtitle: Text(phoneNumber),
+      trailing: ElevatedButton(
+        style: ButtonStyles.elevatedSecondary,
+        onPressed: () => launchUrl(Uri(scheme: 'tel', path: phoneNumber)),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text('Llamar', style: TextStyles.p_black),
+            horizontalSpacer,
+            const Icon(Icons.phone),
+          ],
         ),
       ),
     );

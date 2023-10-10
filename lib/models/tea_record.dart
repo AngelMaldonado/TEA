@@ -11,12 +11,14 @@ class TEARecord extends ChangeNotifier {
     initialInfo = InitialInfo();
     answers = List.generate(
       Answer.questions.length,
-          (index) => Answer(question: Answer.questions[index]),
+      (index) => Answer(question: Answer.questions[index]),
     );
   }
 
   void generateResult() {
-    if (answers.any((answer) => answer.options['Siempre'] == true)) {
+    if (answers.any((answer) =>
+        answer.options['Solo a veces'] == true ||
+        answer.options['Muchas veces'] == true)) {
       hasAutism = true;
     } else {
       hasAutism = false;
