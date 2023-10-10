@@ -90,19 +90,21 @@ class Results extends StatelessWidget {
   }
 
   Widget _phoneTile(String title, String phoneNumber) {
-    return ListTile(
-      title: Text(title, style: TextStyles.p_shadowed),
-      subtitle: Text(phoneNumber),
-      trailing: ElevatedButton(
-        style: ButtonStyles.elevatedSecondary,
-        onPressed: () => launchUrl(Uri(scheme: 'tel', path: phoneNumber)),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text('Llamar', style: TextStyles.p_black),
-            horizontalSpacer,
-            const Icon(Icons.phone),
-          ],
+    return Expanded(
+      child: ListTile(
+        title: Text(title, style: TextStyles.p_shadowed),
+        subtitle: Text(phoneNumber),
+        trailing: ElevatedButton(
+          style: ButtonStyles.elevatedSecondary,
+          onPressed: () => launchUrl(Uri(scheme: 'tel', path: phoneNumber)),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text('Llamar', style: TextStyles.p_black),
+              horizontalSpacer,
+              const Icon(Icons.phone),
+            ],
+          ),
         ),
       ),
     );
