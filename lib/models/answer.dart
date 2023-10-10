@@ -19,6 +19,6 @@ class Answer {
     '¿Responde a su nombre cuando se le llama?',
     '¿Juega adecuadamente con juguetes (sin metérselos a la boca, aventarlos, girarlos, o formarlos)?',
     '¿Establece y mantiene el contacto visual con otros?',
-    '¿No lleva cosas cuando se las pides?',
+    '¿Se muestra aislado de otras personas?',
   ];
 }
