@@ -8,8 +8,8 @@
     </queries>
     <application
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
-        android:label="tea"
+        android:icon="@mipmap/launcher_icon"
+        android:label="TEA"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"

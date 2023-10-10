@@ -4,6 +4,9 @@ import 'package:tea/models/tea_record.dart';
 
 // Función para enviar datos a Firestore
 Future saveTEARecord(TEARecord teaRecord) async {
+  if (teaRecord.answers.last.options['Solo a veces'] == false) {
+    return;
+  }
   final CollectionReference collection =
       FirebaseFirestore.instance.collection('registros');
   // Crear una referencia a la colección en Firestore

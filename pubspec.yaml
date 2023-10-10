@@ -21,12 +21,19 @@ dependencies:
   flutter_screenutil: ^5.9.0
   shared_preferences: ^2.2.1
   url_launcher: ^6.1.14
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  image_path: "assets/icons/icon.png"
+  adaptive_icon_background: "#469CBF"
+  adaptive_icon_foreground: "assets/icons/icon_foreground.png"
 
 flutter:
 
