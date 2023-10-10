@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tea/utils/fonts.dart';
 import 'package:tea/widgets/tea_button.dart';
-import 'package:tea/widgets/tea_text.dart';
 import '../utils/constants.dart';
 import '../utils/tea_theme.dart';
 
-class TEAAppBar extends StatelessWidget {
+class TEAAppBar extends StatelessWidget implements PreferredSizeWidget {
+  @override
+  Size get preferredSize => Size.fromHeight(appBarHeight);
   final String title;
-  final bool? centerTitle;
+  final bool centerTitle;
   final Function action;
 
   const TEAAppBar({
@@ -18,33 +20,42 @@ class TEAAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: appPadding.left,
-          right: appPadding.right,
-          top: appPadding.top,
-        ),
-        child: AppBar(
-          toolbarHeight: double.infinity,
-          clipBehavior: Clip.none,
-          leading: Transform.translate(
-            offset: const Offset(-10, 0),
-            child: TEAButton(
-              action: () => action(),
-              icon: Icons.arrow_back_ios_new,
-              theme: TEAWidgetTheme.secondary,
-            ),
-          ),
-          centerTitle: centerTitle,
-          title: centerTitle == false
-              ? Align(
-                  alignment: Alignment.centerRight,
-                  child: TEAText(title, textStyle: TEATextStyle.h2),
-                )
-              : TEAText(title, textStyle: TEATextStyle.h2),
-        ),
+    return AppBar(
+      automaticallyImplyLeading: false,
+      toolbarHeight: double.infinity,
+      title: Row(
+        mainAxisAlignment: centerTitle
+            ? MainAxisAlignment.start
+            : MainAxisAlignment.spaceBetween,
+        children: _appBarWidgets(),
       ),
     );
+  }
+
+  List<Widget> _appBarWidgets() {
+    return <Widget>[
+      TEAButton(
+        action: () => action(),
+        icon: Icons.arrow_back_ios_new,
+        theme: TEAWidgetTheme.secondary,
+      ),
+      Visibility(
+        visible: centerTitle,
+        child: Expanded(
+          child: Padding(
+            padding: EdgeInsets.only(right: iconButtonSize),
+            child: Text(
+              title,
+              style: TextStyles.h2,
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ),
+      Visibility(
+        visible: centerTitle ? false : true,
+        child: Text(title, style: TextStyles.h2),
+      ),
+    ];
   }
 }

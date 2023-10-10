@@ -24,7 +24,28 @@ class TEACheckBoxGroup extends StatefulWidget {
 }
 
 class _TEACheckBoxGroupState extends State<TEACheckBoxGroup> {
-  void toggleCheckBoxGroup(String checkBoxLabel) {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: _checkboxes(),
+    );
+  }
+
+  List<Widget> _checkboxes() {
+    List<TEACheckbox> checkboxes = <TEACheckbox>[];
+    widget.options.forEach(
+      (option, selected) => checkboxes.add(
+        TEACheckbox(
+          title: option,
+          toggleAction: _toggleCheckBoxGroup,
+          value: selected,
+        ),
+      ),
+    );
+    return checkboxes;
+  }
+
+  void _toggleCheckBoxGroup(String checkBoxLabel) {
     setState(() {
       widget.options.forEach((label, selected) {
         if (selected && label != checkBoxLabel) {
@@ -35,26 +56,5 @@ class _TEACheckBoxGroupState extends State<TEACheckBoxGroup> {
       });
     });
     widget.onSelectedValueChanged(checkBoxLabel);
-  }
-
-  List<Widget> generateCheckboxes() {
-    List<TEACheckbox> checkboxes = <TEACheckbox>[];
-    widget.options.forEach(
-      (label, selected) => checkboxes.add(
-        TEACheckbox(
-          title: label,
-          toggleAction: toggleCheckBoxGroup,
-          value: selected,
-        ),
-      ),
-    );
-    return checkboxes;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: generateCheckboxes(),
-    );
   }
 }

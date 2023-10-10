@@ -8,92 +8,48 @@
 
 import 'package:flutter/material.dart';
 import 'package:tea/utils/colors.dart';
-import 'package:tea/utils/constants.dart';
-import 'package:tea/widgets/tea_text.dart';
 
-enum TEAWidgetTheme {
-  primary,
-  secondary,
-}
+enum TEAWidgetTheme { primary, secondary }
 
-enum TEATextStyle {
-  h2,
-  h3,
-  inputText,
-  inputTextSecondary,
-  p,
-}
-
-ButtonStyle primaryComboBoxTheme = ButtonStyle(
-  padding: MaterialStatePropertyAll(buttonPadding),
-  shape: MaterialStatePropertyAll(
-    RoundedRectangleBorder(
+final ThemeData mainTheme = ThemeData(
+  scaffoldBackgroundColor: primary,
+  appBarTheme: const AppBarTheme(
+    backgroundColor: primary,
+    elevation: 0,
+  ),
+  dialogTheme: DialogTheme(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    backgroundColor: primaryLight,
+  ),
+  sliderTheme: const SliderThemeData(
+    activeTrackColor: primaryLight,
+    inactiveTickMarkColor: primaryLight,
+    inactiveTrackColor: primaryLight,
+    thumbColor: primaryLight,
+    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 23),
+    trackHeight: 8.0,
+  ),
+  inputDecorationTheme: const InputDecorationTheme(
+    isDense: true,
+  ),
+  checkboxTheme: CheckboxThemeData(
+    side: const BorderSide(
+      color: primaryLight,
+      width: 2.5,
+      strokeAlign: BorderSide.strokeAlignOutside,
+    ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(5.0),
+    ),
+    overlayColor: const MaterialStatePropertyAll(Colors.transparent),
+    checkColor: const MaterialStatePropertyAll(primary),
+    fillColor: const MaterialStatePropertyAll(primaryLight),
+  ),
+  listTileTheme: ListTileThemeData(
+    contentPadding: EdgeInsets.zero,
+    shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12),
     ),
+    horizontalTitleGap: 8,
   ),
-  backgroundColor: const MaterialStatePropertyAll(primaryLight),
-  overlayColor: const MaterialStatePropertyAll(primaryDark),
 );
-
-ButtonStyle listTextButtonTheme = const ButtonStyle(
-  textStyle: MaterialStatePropertyAll(buttonText),
-  padding: MaterialStatePropertyAll(textButtonPadding),
-  shape: MaterialStatePropertyAll(
-    BeveledRectangleBorder(),
-  ),
-  backgroundColor: MaterialStatePropertyAll(primaryLight),
-  overlayColor: MaterialStatePropertyAll(primaryDark),
-);
-
-class TEATheme {
-  static ThemeData mainTheme() {
-    return ThemeData(
-      scaffoldBackgroundColor: primary,
-      appBarTheme: AppBarTheme(
-        backgroundColor: primary.withAlpha(200),
-        elevation: 0,
-        //titleTextStyle: h2,
-      ),
-      dialogTheme: DialogTheme(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        backgroundColor: primaryLight,
-        //titleTextStyle: paragraph.copyWith(
-        //  color: Colors.red,
-        //  shadows: [],
-      ),
-      //contentTextStyle: paragraph.copyWith(
-      //  color: Colors.black,
-      //  shadows: [],
-      //),
-      //),
-      sliderTheme: const SliderThemeData(
-        activeTrackColor: primaryLight,
-        inactiveTickMarkColor: primaryLight,
-        inactiveTrackColor: primaryLight,
-        thumbColor: primaryLight,
-        thumbShape: RoundSliderThumbShape(enabledThumbRadius: 23),
-        trackHeight: 8.0,
-      ),
-      checkboxTheme: CheckboxThemeData(
-        side: const BorderSide(
-          color: primaryLight,
-          width: 2.5,
-          strokeAlign: BorderSide.strokeAlignOutside,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        overlayColor: const MaterialStatePropertyAll(Colors.transparent),
-        checkColor: const MaterialStatePropertyAll(primary),
-        fillColor: const MaterialStatePropertyAll(primaryLight),
-      ),
-      listTileTheme: ListTileThemeData(
-        contentPadding: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        horizontalTitleGap: 8,
-      ),
-    );
-  }
-}

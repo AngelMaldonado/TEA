@@ -8,6 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:tea/screens/splash.dart';
 import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/routes.dart';
@@ -22,23 +23,24 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData query = MediaQuery.of(context);
     return ScreenUtilInit(
       designSize: const Size(393, 852),
       child: MediaQuery(
-        data: query.copyWith(
-          textScaleFactor: query.textScaleFactor.clamp(1.0, 1.06),
+        data: MediaQuery.of(context).copyWith(
+          textScaleFactor:
+              MediaQuery.of(context).textScaleFactor.clamp(1.0, 1.06),
         ),
         child: MaterialApp(
           title: 'TEA',
           debugShowCheckedModeBanner: false,
-          theme: TEATheme.mainTheme(),
+          theme: mainTheme,
           initialRoute: 'splash',
           routes: {
             'splash': (context) => const Splash(),
             'home': (context) => const Home(),
             'info': (context) => const Info(),
             'questions': (context) => const Questions(),
+            'references': (context) => const References(),
           },
         ),
       ),

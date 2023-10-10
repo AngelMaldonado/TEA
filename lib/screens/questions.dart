@@ -12,10 +12,10 @@ class Questions extends StatefulWidget {
 
 class _QuestionsState extends State<Questions> {
   late final TEARecord _teaRecord;
-  late List<Widget> _pageViewWidgets;
+  late final List<Widget> _pageViewWidgets;
   late final PageController _pageController;
-  int _currentPage = 0;
   final Duration _pageTransitionDuration = const Duration(milliseconds: 500);
+  int _currentPage = 0;
 
   @override
   void initState() {
@@ -25,18 +25,34 @@ class _QuestionsState extends State<Questions> {
     _pageController = PageController(initialPage: _currentPage);
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () => _previousPage(),
+      child: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: _pageController,
+        children: _pageViewWidgets,
+      ),
+    );
+  }
+
   List<Widget> _generatePageViewWidgets() {
     List<Widget> pageViewWidgets = <Widget>[
       InitialData(
         initialInfo: _teaRecord.initialInfo,
         onNextAction: _nextPage,
-        onBackAction: () => Navigator.pop(context),
+        onBackAction: () => Navigator.pushNamedAndRemoveUntil(
+          context,
+          'home',
+          (route) => false,
+        ),
       ),
     ];
+
     pageViewWidgets.addAll(
-      List.generate(
-        _teaRecord.answers.length,
-        (index) => TEAQuestion(
+      List.generate(_teaRecord.answers.length, (index) {
+        return TEAQuestion(
           answer: _teaRecord.answers[index],
           totalQuestions: _teaRecord.answers.length,
           currentQuestion: index + 1,
@@ -44,52 +60,40 @@ class _QuestionsState extends State<Questions> {
           animationJSONPath: 'assets/animations/animation_q${index + 1}.json',
           onNextAction: _nextPage,
           onBackAction: _previousPage,
-          validateSelection: true,
-        ),
-      ),
+        );
+      }),
+    );
+
+    pageViewWidgets.add(
+      Results(teaRecord: _teaRecord, onBackAction: _previousPage),
     );
 
     return pageViewWidgets;
   }
 
-  void _nextPage() {
+  _nextPage() {
     setState(() {
       if (_currentPage == _teaRecord.answers.length) {
         _teaRecord.generateResult();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Builder(
-              builder: (context) => Results(teaRecord: _teaRecord),
-            ),
-          ),
-        );
-      } else {
-        _pageController.animateToPage(
-          ++_currentPage,
-          duration: _pageTransitionDuration,
-          curve: Curves.easeOut,
-        );
       }
-    });
-  }
-
-  void _previousPage() {
-    setState(() {
       _pageController.animateToPage(
-        --_currentPage,
+        ++_currentPage,
         duration: _pageTransitionDuration,
         curve: Curves.easeOut,
       );
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return PageView(
-      physics: const NeverScrollableScrollPhysics(),
-      controller: _pageController,
-      children: _pageViewWidgets,
-    );
+  _previousPage() {
+    setState(() {
+      if (_currentPage == 0) {
+        Navigator.pushNamedAndRemoveUntil(context, 'home', (route) => false);
+      }
+      _pageController.animateToPage(
+        --_currentPage,
+        duration: _pageTransitionDuration,
+        curve: Curves.easeOut,
+      );
+    });
   }
 }
