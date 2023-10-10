@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,38 +49,20 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDUzFnDUPcde_wGoaxd3wrh53UYUDgQkCI',
-    appId: '1:70507233363:web:13f6e69bc254cb2d4286a6',
-    messagingSenderId: '70507233363',
-    projectId: 'appautismo-5daeb',
-    authDomain: 'appautismo-5daeb.firebaseapp.com',
-    storageBucket: 'appautismo-5daeb.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAKlroZJVEMUdqti6jyrrbMZt7W25q0bGs',
-    appId: '1:70507233363:android:48aa92f5018987374286a6',
-    messagingSenderId: '70507233363',
-    projectId: 'appautismo-5daeb',
-    storageBucket: 'appautismo-5daeb.appspot.com',
+    apiKey: 'AIzaSyBgREaUAxOl0EBX6o4Lx3L96uU16MCFQ1U',
+    appId: '1:1083495542149:android:db39bc7a7e921b974928ec',
+    messagingSenderId: '1083495542149',
+    projectId: 'tamizaje-autismo',
+    storageBucket: 'tamizaje-autismo.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA0561VDBxHCTGSEXylcbP-Y-ZfPl1OyK4',
-    appId: '1:70507233363:ios:e558522f5c51a4974286a6',
-    messagingSenderId: '70507233363',
-    projectId: 'appautismo-5daeb',
-    storageBucket: 'appautismo-5daeb.appspot.com',
-    iosBundleId: 'com.example.tea',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyA0561VDBxHCTGSEXylcbP-Y-ZfPl1OyK4',
-    appId: '1:70507233363:ios:8a4f4c39d0d0d15f4286a6',
-    messagingSenderId: '70507233363',
-    projectId: 'appautismo-5daeb',
-    storageBucket: 'appautismo-5daeb.appspot.com',
-    iosBundleId: 'com.example.tea.RunnerTests',
+    apiKey: 'AIzaSyDFPyHmGkPn0ronTZVFAMP6k8XiNgg5vyE',
+    appId: '1:1083495542149:ios:abd0c5853b69a99e4928ec',
+    messagingSenderId: '1083495542149',
+    projectId: 'tamizaje-autismo',
+    storageBucket: 'tamizaje-autismo.appspot.com',
+    iosBundleId: 'com.app.tea',
   );
 }

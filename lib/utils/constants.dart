@@ -50,7 +50,7 @@ OutlineInputBorder inputWidgetBorder = OutlineInputBorder(
 
 /// Text legends *
 const telHospitalNinoyMujer = '+52 (444) 205 2465';
-const telPaisDeMaravillas = '+52 (934) 832 1000';
+const telPaisDeMaravillas = '+52 (444) 832 1000\r\nExt. 9341';
 const telTemazcalli = '+52 (444) 812 6196';
 const positiveResultMessage = 'Existe probabilidad de que su hijo tenga TEA';
 const negativeResultMessage = 'No es probable de que su hijo tenga TEA';

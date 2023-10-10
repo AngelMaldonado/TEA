@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "70507233363",
-    "project_id": "appautismo-5daeb",
-    "storage_bucket": "appautismo-5daeb.appspot.com"
+    "project_number": "1083495542149",
+    "project_id": "tamizaje-autismo",
+    "storage_bucket": "tamizaje-autismo.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:70507233363:android:48aa92f5018987374286a6",
+        "mobilesdk_app_id": "1:1083495542149:android:db39bc7a7e921b974928ec",
         "android_client_info": {
-          "package_name": "com.example.tea"
+          "package_name": "com.slp.tea"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "70507233363-9pcp6or8eckv15tlumlstbt0he8r30g9.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAKlroZJVEMUdqti6jyrrbMZt7W25q0bGs"
+          "current_key": "AIzaSyBgREaUAxOl0EBX6o4Lx3L96uU16MCFQ1U"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "70507233363-9pcp6or8eckv15tlumlstbt0he8r30g9.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

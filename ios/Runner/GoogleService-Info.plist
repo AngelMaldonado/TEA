@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.tea</string>
+	<string>com.app.tea</string>
 	<key>PROJECT_ID</key>
 	<string>appautismo-5daeb</string>
 	<key>STORAGE_BUCKET</key>

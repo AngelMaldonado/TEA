@@ -5,7 +5,7 @@ import 'package:tea/models/tea_record.dart';
 // Función para enviar datos a Firestore
 Future saveTEARecord(TEARecord teaRecord) async {
   final CollectionReference collection =
-      FirebaseFirestore.instance.collection('registros');
+      FirebaseFirestore.instance.collection('registros-app');
   // Crear una referencia a la colección en Firestore
   try {
     SharedPreferences prefs = await SharedPreferences.getInstance();
