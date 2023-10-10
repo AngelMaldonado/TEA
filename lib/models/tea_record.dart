@@ -16,7 +16,8 @@ class TEARecord extends ChangeNotifier {
   }
 
   void generateResult() {
-    if (answers.any((answer) =>
+    List<Answer> statsAnswers = answers.sublist(0, answers.length - 1);
+    if (statsAnswers.any((answer) =>
         answer.options['Solo a veces'] == true ||
         answer.options['Muchas veces'] == true)) {
       hasAutism = true;
