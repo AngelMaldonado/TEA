@@ -1,3 +1,11 @@
+/// Archivo: main_service.dart
+/// Autores: Angel de Jesús Maldonado Juárez & Carlos Andrés de la Rosa Rincón
+/// Fecha: 20 de julio del 2023
+/// Descripción: Clase para enviar los datos obtenidos a Firestore
+///
+/// Universidad Autónoma de San Luis Potosí
+/// Facultad de Ingeniería
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tea/models/tea_record.dart';

@@ -1,3 +1,11 @@
+/// Archivo: home.dart
+/// Autores: Angel de Jesús Maldonado Juárez & Carlos Andrés de la Rosa Rincón
+/// Fecha: 20 de julio del 2023
+/// Descripción: Representa la pantalla principal de la aplicación
+///
+/// Universidad Autónoma de San Luis Potosí
+/// Facultad de Ingeniería
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,9 +17,12 @@ import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/widgets/tea_alert_dialog.dart';
 import 'package:tea/widgets/tea_button.dart';
 
+
 class Home extends StatelessWidget {
+  // Constructor de la clase Home
   const Home({super.key});
 
+  // Método "build" para construir la interfaz de la pantalla
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -37,6 +48,7 @@ class Home extends StatelessWidget {
     );
   }
 
+  // Método para construir widgets de bienvenida
   List<Widget> _welcomeWidgets(BuildContext context) {
     return <Widget>[
       Column(
@@ -57,6 +69,7 @@ class Home extends StatelessWidget {
     ];
   }
 
+  // Método para construir widgets de acción
   Column _actionWidgets(BuildContext context) {
     return Column(
       children: <Widget>[
@@ -78,6 +91,7 @@ class Home extends StatelessWidget {
     );
   }
 
+  // Método para mostrar un cuadro de diálogo de advertencia
   void _showWarning(BuildContext context) {
     showDialog(
       context: context,
@@ -100,6 +114,7 @@ class Home extends StatelessWidget {
     );
   }
 
+  // Método para mostrar un cuadro de diálogo de advertencia al presionar el botón de retroceso
   _showBackButtonWaring(BuildContext context) {
     showDialog(
       context: context,

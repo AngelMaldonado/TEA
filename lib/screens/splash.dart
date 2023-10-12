@@ -1,4 +1,4 @@
-/// Archivo: app.dart
+/// Archivo: splash.dart
 /// Autores: Angel de Jesús Maldonado Juárez & Carlos Andrés de la Rosa Rincon
 /// Fecha: 20 de julio del 2023
 /// Descripción: Pantalla de bienvenida (splash) con animación

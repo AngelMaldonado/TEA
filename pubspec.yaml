@@ -1,44 +1,53 @@
+# Nombre del proyecto
 name: tea
+
+# Descripción del proyecto
 description: A new Flutter project.
 
+# Configuración de publicación
 publish_to: 'none'
 
+# Versión del proyecto
 version: 1.0.0+1
 
+# Configuración del entorno
 environment:
   sdk: '>=3.0.5 <4.0.0'
 
+# Dependencias del proyecto
 dependencies:
   flutter:
-    sdk: flutter
-  firebase_core: ^2.17.0
-  cloud_firestore: ^4.9.3
-  cupertino_icons: ^1.0.2
-  animated_splash_screen: ^1.3.0
-  page_transition: ^2.0.9
-  flutter_svg: ^2.0.7
-  lottie: ^2.6.0
-  flutter_screenutil: ^5.9.0
-  shared_preferences: ^2.2.1
-  url_launcher: ^6.1.14
-  flutter_launcher_icons: ^0.13.1
+    sdk: flutter  # Dependencia principal de Flutter
+  firebase_core: ^2.17.0  # Firebase Core
+  cloud_firestore: ^4.9.3  # Firebase Cloud Firestore
+  cupertino_icons: ^1.0.2  # Iconos de estilo iOS
+  animated_splash_screen: ^1.3.0  # Pantalla de inicio animada
+  page_transition: ^2.0.9  # Transiciones de páginas
+  flutter_svg: ^2.0.7  # Soporte para imágenes SVG
+  lottie: ^2.6.0  # Animaciones Lottie
+  flutter_screenutil: ^5.9.0  # Utilidades de pantalla
+  shared_preferences: ^2.2.1  # Almacenamiento de preferencias
+  url_launcher: ^6.1.14  # Abrir URL externas
+  flutter_launcher_icons: ^0.13.1  # Generador de íconos de la aplicación
 
+# Dependencias de desarrollo
 dev_dependencies:
   flutter_test:
-    sdk: flutter
+    sdk: flutter  # Pruebas unitarias de Flutter
+  flutter_lints: ^2.0.0  # Reglas de estilo y análisis estático
 
-  flutter_lints: ^2.0.0
-
+# Configuración del generador de íconos de la aplicación
 flutter_launcher_icons:
   android: "launcher_icon"
   image_path: "assets/icons/icon.png"
   adaptive_icon_background: "#469CBF"
   adaptive_icon_foreground: "assets/icons/icon_foreground.png"
 
+# Configuración específica de Flutter
 flutter:
-
-  uses-material-design: true
-
+  uses-material-design: true  # Usa el diseño de materiales de Google
+  
+  # Activos de la aplicación
   assets:
     - assets/icons/
     - assets/animations/

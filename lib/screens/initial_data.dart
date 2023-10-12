@@ -39,6 +39,7 @@ class InitialData extends StatefulWidget {
 
 class _InitialDataState extends State<InitialData>
     with AutomaticKeepAliveClientMixin {
+       // Mapa para opciones de sexo
   final Map<String, bool> _sex = {'👦Masculino': false, '👧Femenino': false};
 
   @override
@@ -68,7 +69,7 @@ class _InitialDataState extends State<InitialData>
       ),
     );
   }
-
+// Método para construir los widgets del formulario
   List<Widget> _formWidgets() {
     return <Widget>[
       Text('🔢 Edad', style: TextStyles.h2),
@@ -115,7 +116,7 @@ class _InitialDataState extends State<InitialData>
       ),
     ];
   }
-
+// Método para construir el combo de municipios basado en el estado seleccionado
   List<Widget> _municipalitiesComboBox() {
     String state = widget.initialInfo.location.state;
     if (Location.stateIsValid(state)) {
@@ -148,6 +149,7 @@ class _InitialDataState extends State<InitialData>
     }
   }
 
+  // Método para construir el combo de colonias basado en el estado y municipio seleccionados
   List<Widget> _suburbsComboBox() {
     String state = widget.initialInfo.location.state;
     String municipality = widget.initialInfo.location.municipality;
@@ -182,6 +184,7 @@ class _InitialDataState extends State<InitialData>
     }
   }
 
+  // Método para validar el formulario y avanzar a la siguiente página
   void _validateForm() {
     String state = widget.initialInfo.location.state;
     String municipality = widget.initialInfo.location.municipality;

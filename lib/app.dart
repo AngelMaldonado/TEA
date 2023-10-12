@@ -31,16 +31,18 @@ class _AppState extends State<App> {
               MediaQuery.of(context).textScaleFactor.clamp(1.0, 1.06),
         ),
         child: MaterialApp(
-          title: 'TEA',
-          debugShowCheckedModeBanner: false,
-          theme: mainTheme,
-          initialRoute: 'splash',
+          title: 'TEA', // Título de la aplicación que aparecerá en la barra de la aplicación.
+          debugShowCheckedModeBanner: false, // Desactiva el banner de depuración en modo de depuración.
+          theme: mainTheme, // Configuración del tema de la aplicación.
+          initialRoute: 'splash', // Ruta inicial de la aplicación.
+
+          // Define las rutas de navegación de la aplicación.
           routes: {
-            'splash': (context) => const Splash(),
-            'home': (context) => const Home(),
-            'info': (context) => const Info(),
+            'splash': (context) => const Splash(), 
+            'home': (context) => const Home(), 
+            'info': (context) => const Info(), 
             'questions': (context) => const Questions(),
-            'references': (context) => const References(),
+            'references': (context) => const References(), 
           },
         ),
       ),
