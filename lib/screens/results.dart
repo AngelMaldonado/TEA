@@ -90,13 +90,16 @@ class Results extends StatelessWidget {
   }
 
   Widget _phoneTile(String title, String phoneNumber) {
+    String displayedPhoneNumber =
+      phoneNumber.length >= 18 ? phoneNumber.substring(0, 18) : phoneNumber;
+
     return Expanded(
       child: ListTile(
         title: Text(title, style: TextStyles.p_shadowed),
-        subtitle: Text(phoneNumber),
+        subtitle: Text(phoneNumber), // Muestra el número original en el subtítulo
         trailing: ElevatedButton(
           style: ButtonStyles.elevatedSecondary,
-          onPressed: () => launchUrl(Uri(scheme: 'tel', path: phoneNumber)),
+          onPressed: () => launchUrl(Uri(scheme: 'tel', path: displayedPhoneNumber)), // Muestra el número sin extensión
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
