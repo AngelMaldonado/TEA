@@ -2,9 +2,9 @@
 name: tea
 
 # Descripción del proyecto
-description: A new Flutter project.
+description: App para tamizaje sobre autismo en niños de 18 a 24 meses de edad en México.
 
-# Configuración de publicación
+# Especificación de publicación en pub (paquetes)
 publish_to: 'none'
 
 # Versión del proyecto
@@ -12,42 +12,59 @@ version: 1.0.0+1
 
 # Configuración del entorno
 environment:
+  # Versiónes de Android admitidas
   sdk: '>=3.0.5 <4.0.0'
 
-# Dependencias del proyecto
+# Dependencias del proyecto (para producción)
 dependencies:
   flutter:
-    sdk: flutter  # Dependencia principal de Flutter
-  firebase_core: ^2.17.0  # Firebase Core
-  cloud_firestore: ^4.9.3  # Firebase Cloud Firestore
-  cupertino_icons: ^1.0.2  # Iconos de estilo iOS
-  animated_splash_screen: ^1.3.0  # Pantalla de inicio animada
-  page_transition: ^2.0.9  # Transiciones de páginas
-  flutter_svg: ^2.0.7  # Soporte para imágenes SVG
-  lottie: ^2.6.0  # Animaciones Lottie
-  flutter_screenutil: ^5.9.0  # Utilidades de pantalla
-  shared_preferences: ^2.2.1  # Almacenamiento de preferencias
-  url_launcher: ^6.1.14  # Abrir URL externas
-  flutter_launcher_icons: ^0.13.1  # Generador de íconos de la aplicación
+    # Dependencia principal de Flutter (sdk)
+    sdk: flutter
+  # Firebase core (habilita la conexión a Firebase)
+  firebase_core: ^2.17.0
+  # Cloud firestore (manejo de colecciones en Firebase)
+  cloud_firestore: ^4.9.3
+  # Íconos iOS
+  cupertino_icons: ^1.0.2
+  # Animaciones para la SplashScreen
+  animated_splash_screen: ^1.3.0
+  # Transiciones entre pantallas
+  page_transition: ^2.0.9
+  # Soporte para imágenes SVG
+  flutter_svg: ^2.0.7
+  # API Lottie para incluir animaciones en las preguntas
+  lottie: ^2.6.0
+  # Unidades responsivas con base en el diseño en Figma
+  flutter_screenutil: ^5.9.0
+  # Configuraciones y preferencias del dispositivo
+  shared_preferences: ^2.2.1
+  # Manejo de enlaces y números de teléfono
+  url_launcher: ^6.1.14
+  # Íconos de la aplicación
+  flutter_launcher_icons: ^0.13.1
 
 # Dependencias de desarrollo
 dev_dependencies:
-  flutter_test:
-    sdk: flutter  # Pruebas unitarias de Flutter
   flutter_lints: ^2.0.0  # Reglas de estilo y análisis estático
 
-# Configuración del generador de íconos de la aplicación
+# Configuración íconos para la aplicación
 flutter_launcher_icons:
   android: "launcher_icon"
   image_path: "assets/icons/icon.png"
   adaptive_icon_background: "#469CBF"
   adaptive_icon_foreground: "assets/icons/icon_foreground.png"
 
+# Plataformas compatibles
+platforms:
+  android:
+  ios:
+
 # Configuración específica de Flutter
 flutter:
-  uses-material-design: true  # Usa el diseño de materiales de Google
+  # Íconos, componentes, y estilos del sistema Material de Google
+  uses-material-design: true
   
-  # Activos de la aplicación
+  # Recursos de la aplicación (gráficos e información)
   assets:
     - assets/icons/
     - assets/animations/

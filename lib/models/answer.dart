@@ -1,22 +1,26 @@
-/// Archivo: answer.dart
-/// Autores: Angel de Jesús Maldonado Juárez & Carlos Andrés de la Rosa Rincón
-/// Fecha: 20 de julio del 2023
-/// Descripción: Clase para gestionar las respuestas seleccionadas por el usuario
-///
-/// Universidad Autónoma de San Luis Potosí
-/// Facultad de Ingeniería
+/**
+ * Archivo: answer.dart
+ * Autores: Angel de Jesús Maldonado Juárez & Carlos Andrés de la Rosa Rincón
+ * Fecha: 20 de julio del 2023
+ * Descripción: Clase para gestionar las respuestas seleccionadas por el usuario
+ *
+ * Universidad Autónoma de San Luis Potosí
+ * Facultad de Ingeniería
+ */
 
+/// Entidad Answer, representa el par de pregunta - respuesta
 class Answer {
   // Atributo que almacena la pregunta
   final String question;
 
-  // Mapa que almacena las opciones y sus estados
+  // Mapa que almacena las opciones y sus estados (seleccionado o no)
   Map<String, bool> options = {
     'Rara vez': false,
     'Solo a veces': false,
     'Muchas veces': false,
   };
 
+  // Constructor
   Answer({required this.question});
 
   // Método para obtener la opción seleccionada

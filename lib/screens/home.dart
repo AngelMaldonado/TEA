@@ -1,15 +1,18 @@
-/// Archivo: home.dart
-/// Autores: Angel de Jesús Maldonado Juárez & Carlos Andrés de la Rosa Rincón
-/// Fecha: 20 de julio del 2023
-/// Descripción: Representa la pantalla principal de la aplicación
-///
-/// Universidad Autónoma de San Luis Potosí
-/// Facultad de Ingeniería
+/**
+ * Universidad Autónoma de San Luis Potosí
+ * Facultad de Ingeniería
+ * home.dart
+ * - Autores: Angel de Jesús Maldonado Juárez
+ *            Carlos Andrés de la Rosa Rincon
+ * - Creado el: 20 de julio del 2023
+ * - Última modificación: ---
+ * - Descripción: Pantalla (Widget) principal de la aplicación.
+ */
 
+/// Importación de bibliotecas
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:tea/screens/info.dart';
 import 'package:tea/utils/constants.dart';
 import 'package:tea/utils/fonts.dart';
@@ -17,28 +20,43 @@ import 'package:tea/utils/tea_theme.dart';
 import 'package:tea/widgets/tea_alert_dialog.dart';
 import 'package:tea/widgets/tea_button.dart';
 
-
+/// Widget Home
 class Home extends StatelessWidget {
-  // Constructor de la clase Home
+  // Constructor
   const Home({super.key});
 
   // Método "build" para construir la interfaz de la pantalla
   @override
   Widget build(BuildContext context) {
+    // WillPopScope permite el comportamiento de confirmar que el usuario salga
+    // de la App si ya retrocedió en las pantallas lo máximo posible
     return WillPopScope(
+      // Alerta de que saldrá de la aplicación
       onWillPop: () => _showBackButtonWaring(context),
+      // Scaffold es el cuerpo del App
       child: Scaffold(
+        // SafeArea detecta la barra de notificaciones del dispositivo y
+        // renderiza el contenido por debajo de esta
         body: SafeArea(
+          // Padding agrega espacios del borde hacia dentro
           child: Padding(
             padding: appPadding,
+            // Column permite agregar varios Widgets de forma vertical
             child: Column(
+              // Arreglo de Widgets
               children: <Widget>[
+                // Expande la columna para ocupar el 100% de altura del
+                // dispositivo
                 Expanded(
                   child: Column(
+                    // Da un espaciado igual a todos los Widgets dentro de
+                    // Column
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    // _welcomeWidgets crea los Widgets hijos
                     children: _welcomeWidgets(context),
                   ),
                 ),
+                // Crea la barra para navegar
                 _actionWidgets(context),
               ],
             ),
