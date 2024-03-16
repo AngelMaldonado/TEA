@@ -1,3 +1,11 @@
+/// Archivo: results.dart
+/// Autores: Angel de Jesús Maldonado Juárez & Carlos Andrés de la Rosa
+/// Fecha: 31 de julio del 2023
+/// Descripción: Clase que representa la pantalla de resultados del TEA
+///
+/// Universidad Autónoma de San Luis Potosí
+/// Facultad de Ingeniería
+
 import 'package:flutter/material.dart';
 import 'package:tea/models/tea_record.dart';
 import 'package:tea/services/main_service.dart';
@@ -10,13 +18,14 @@ import 'package:url_launcher/url_launcher.dart';
 import '../widgets/tea_appbar.dart';
 
 class Results extends StatelessWidget {
-  final TEARecord teaRecord;
-  final Function onBackAction;
+  final TEARecord teaRecord; // Variable que almacena un registro.
+  final Function onBackAction; // Función que se ejecutará cuando se active la acción de retroceso.
 
+  // Constructor de la clase Results.
   const Results({
     super.key,
-    required this.teaRecord,
-    required this.onBackAction,
+    required this.teaRecord, // Se requiere un registro TEARecord.
+    required this.onBackAction, // Se requiere una función onBackAction.
   });
 
   @override
@@ -32,8 +41,8 @@ class Results extends StatelessWidget {
             hasScrollBody: false,
             child: SafeArea(
               child: FutureBuilder(
-                future: saveTEARecord(teaRecord),
-                builder: (context, _) => _resultsWidgets(context),
+                future: saveTEARecord(teaRecord),// Llamada para guardar el registro TEA
+                builder: (context, _) => _resultsWidgets(context), // Construye los widgets de resultados
               ),
             ),
           ),
@@ -41,16 +50,16 @@ class Results extends StatelessWidget {
       ),
     );
   }
-
+ // Método para construir los widgets de resultados
   Widget _resultsWidgets(BuildContext context) {
     return Padding(
       padding: appPadding,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          ..._messages(),
+          ..._messages(),// Muestra información de respuestas
           verticalSpacer,
-          ..._especialistas(),
+          ..._especialistas(),// Muestra información de especialistas
           verticalSpacer,
           TEAButton(
             action: () => Navigator.pushNamed(context, 'splash'),
